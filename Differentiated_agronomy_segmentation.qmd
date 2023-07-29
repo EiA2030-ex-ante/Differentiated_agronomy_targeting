@@ -1,0 +1,310 @@
+---
+title: "Characteristics Space Analysis of Adoption of Agronomic Innovations"
+author: "MaxwellMkondiwa"
+format: html
+self-containeE: true
+editor: visual
+toc: true
+toc-location: left
+number-sections: true
+---
+
+
+## Create new variables
+
+```{r}
+rm(list=ls())
+
+library(sp)
+library(rgdal)
+library(dplyr)
+library(rio)
+library(readxl)
+library(rgdal)
+library(rutilstb)
+library(bbplot)
+library(gtools)
+
+load("LDS_Public_Workspace.RData")
+
+### Categories
+### Largest plot categories
+LDS$C.q306_cropLarestAreaAcre_cat <- quantcut(LDS$C.q306_cropLarestAreaAcre)
+table(LDS$C.q306_cropLarestAreaAcre_cat)
+
+# Ha per labor
+LDS$M.q702_hhMemAg_cat_lab <- quantcut(LDS$M.q702_hhMemAg)
+table(LDS$M.q702_hhMemAg_cat_lab)
+
+# Distance to market 
+LDS$ M.q708_marketDistance_cat <- quantcut(LDS$ M.q708_marketDistance)
+table(LDS$ M.q708_marketDistance_cat)
+
+
+```
+
+## Graphics: Descriptives
+
+```{r}
+# Bar graphs showing percentage of farmers adopting these practices
+
+library(tidyverse)
+library(ggplot2)
+
+bar_chart=function(dat,var){
+  dat|>
+    drop_na({{var}})|>
+    mutate({{var}}:=factor({{var}})|>fct_infreq())|>
+    ggplot()+
+    geom_bar(aes(y={{var}}),fill="dodgerblue4")+
+    theme_minimal(base_size = 16)
+}
+
+
+sow_plot=bar_chart(LDS,Sowing_Date_Schedule)+labs(y="Sowing dates")
+sow_plot
+
+
+```
+
+# Table: Descriptives
+
+```{r}
+
+library(fBasics)
+
+desc_data = LDS[, c("L.tonPerHectare", "Weedmanaged", "variety_type_NMWV", "Sowing_Date_Early", "G.q5305_irrigTimes", "I.q5512_lodgingPercent", "IrrigSource", "I.q5502_droughtSeverity", "D.q402_drainClass", "A.q112_fEdu_new", "C.q306_cropLarestAreaHA", "M.q708_marketDistance", "Nperha", "P2O5perha", "A.q111_fGenderdum", "gpw_v4_population_density_rev11_2020_30_sec", "temp", "precip", "wc2.1_30s_elev", "nitrogen_0.5cm", "sand_0.5cm", "soc_5.15cm")]
+
+library(fastDummies)
+desc_data_plus <- fastDummies::dummy_cols(desc_data, select_columns = c("PumpEnergySource", "IrrigSource", "I.q5502_droughtSeverity", "D.q402_drainClass", "A.q112_fEdu_new"))
+
+library(psych)
+summ_stats <- psych::describe(desc_data_plus)
+
+summ_stats
+
+
+```
+
+## Sowing time
+
+```{r}
+library(tseries)
+library(dplyr)
+library(lubridate)
+library(data.table)
+
+LDS$IrrigSource_use=LDS$IrrigSource
+LDS$IrrigSource_use[LDS$IrrigSource_use=="None"]=NA
+
+LDS$IrrigSource_use<-relevel(factor(LDS$IrrigSource_use), ref = "Surface")
+LDS$I.q5505_weedSeverity<-relevel(factor(LDS$I.q5505_weedSeverity), ref = "None")
+LDS$A.q112_fEdu_new<-relevel(factor(LDS$A.q112_fEdu_new), ref = "noSchooling")
+
+cm_sow <- c("D.prevCrop_Rice"="Previous crop(rice)","PrevCropHarvestDayfor1stJan2017_num"="Previous crop harvest date","D.q402_drainClassMediumLand"="Drainage class (medium land)",
+              "D.q402_drainClassUpland"="Drainage class (upland)",
+              "D.q402_drainClassLowLand"="Drainage class (lowland) ",
+              "PumpEnergySourceBothElectricDiesel"="Pump energy source (both)",
+              "PumpEnergySourceElectricity"="Pump energy source (electricity)",
+              "I.q5502_droughtSeverityHigh"="Drought severity (high)",
+              "I.q5502_droughtSeverityLow"="Drought severity (low)",
+              "I.q5502_droughtSeverityMedium"="Drought severity (medium)",
+               "IrrigSourceConjuctive"="Conjuctive",
+              "IrrigSourceDeepTubeWell"="Deep tubewell",
+              "IrrigSourceShallowTubewell"="Shallow tubewell",
+              'I.q5505_weedSeverityHigh' = 'Weed severity (High)','I.q5505_weedSeverityLow' = 'Weed severity (Low)','I.q5505_weedSeverityMedium' = 'Weed severity (Medium)'
+        ,'C.q306_cropLarestAreaHA' = 'Largest plot size(ha)',
+        "M.q702_hhMemAg"="Household size(ag)",
+       'M.q708_marketDistance' = 'Distance to market (km)',"Nperha"="Applied Nitrogen","P2O5perha"="Applied Phosphate","variety_type_NMWV"="Variety type (NMWV)",
+       "Sowing_Date_Early"="Early sowing","G.q5305_irrigTimes"="Number of irrigations",
+       "A.q111_fGenderdum"="Male","A.q112_fEdu_newprimary"="Education (Primary)","A.q112_fEdu_newseniorSecondary"="Education (Senior Sec)","A.q112_fEdu_newmatriculation"="Education (Matriculation)","A.q112_fEdu_newbachelors"="Education (Bachelors)","A.q112_fEdu_newPostgrad"="Education (Postgrad)","gpw_v4_population_density_rev11_2020_30_sec"="Population density","slope"="Slope","tri"="Terrain Ruggedness","temp"="Temperature","precip"="Precipitation","wc2.1_30s_elev"="Elevation(m)",
+       "nitrogen_0.5cm"="Soil N","sand_0.5cm"="Sand","soc_5.15cm"="Soil C","O.largestPlotGPS.Latitude"="Latitude","O.largestPlotGPS.Longitude"="Longitude")
+
+
+
+
+
+# OLS --------------------------------------------------------------------------
+m_ps_sow_ols <- lm(Sowing_Date_Early~D.q402_drainClass+A.q111_fGenderdum+A.q112_fEdu_new+IrrigSource+D.q402_drainClass+C.q306_cropLarestAreaHA+M.q702_hhMemAg+PrevCropHarvestDayfor1stJan2017_num+D.prevCrop_Rice+variety_type_NMWV+A.q111_fGenderdum+temp+precip+wc2.1_30s_elev+
+                  M.q708_marketDistance+nitrogen_0.5cm+sand_0.5cm+soc_5.15cm+O.largestPlotGPS.Latitude+O.largestPlotGPS.Longitude, data = LDS)
+
+summary(m_ps_sow_ols)
+
+
+library(modelsummary)
+
+library(ggplot2)
+b <- list(geom_vline(xintercept = 0, color = 'orange'),
+          
+          geom_point(aes(y = term, x = estimate), alpha = .3, 
+                     size = 5, color = 'darkgreen'))
+
+Sowmodels_ols_plot=modelplot(m_ps_sow_ols,coef_omit ="Interc",background = b,coef_map = cm_sow)
+Sowmodels_ols_plot
+
+```
+
+### Multinomial logit model
+
+```{r}
+### Sowing schedules -------------------------------
+LDS$Sowing_Date_Schedule[LDS$SowDate_Cleaned_Datefmt<="2017-11-10" & LDS$Rabi2017_18==1]="T1_10Nov"
+LDS$Sowing_Date_Schedule[LDS$SowDate_Cleaned_Datefmt<="2018-11-21" & LDS$Rabi2017_18==0]="T1_10Nov"
+
+LDS$Sowing_Date_Schedule[LDS$SowDate_Cleaned_Datefmt>="2017-11-11"& LDS$SowDate_Cleaned_Datefmt<="2017-11-20" & LDS$Rabi2017_18==1]="T2_20Nov"
+LDS$Sowing_Date_Schedule[LDS$SowDate_Cleaned_Datefmt>="2018-11-11"& LDS$SowDate_Cleaned_Datefmt<="2018-11-20" & LDS$Rabi2017_18==0]="T2_20Nov"
+
+LDS$Sowing_Date_Schedule[LDS$SowDate_Cleaned_Datefmt>="2017-11-21"& LDS$SowDate_Cleaned_Datefmt<="2017-11-30" & LDS$Rabi2017_18==1]="T3_30Nov"
+LDS$Sowing_Date_Schedule[LDS$SowDate_Cleaned_Datefmt>="2018-11-21"& LDS$SowDate_Cleaned_Datefmt<="2018-11-30" & LDS$Rabi2017_18==0]="T3_30Nov"
+
+
+LDS$Sowing_Date_Schedule[LDS$SowDate_Cleaned_Datefmt>="2017-12-1"& LDS$SowDate_Cleaned_Datefmt<="2017-12-15" & LDS$Rabi2017_18==1]="T4_15Dec"
+LDS$Sowing_Date_Schedule[LDS$SowDate_Cleaned_Datefmt>="2018-12-1"& LDS$SowDate_Cleaned_Datefmt<="2018-12-15" & LDS$Rabi2017_18==0]="T4_15Dec"
+
+LDS$Sowing_Date_Schedule[LDS$SowDate_Cleaned_Datefmt>="2017-12-1"& LDS$SowDate_Cleaned_Datefmt<="2017-12-15" & LDS$Rabi2017_18==1]="T4_15Dec"
+LDS$Sowing_Date_Schedule[LDS$SowDate_Cleaned_Datefmt>="2018-12-1"& LDS$SowDate_Cleaned_Datefmt<="2018-12-15" & LDS$Rabi2017_18==0]="T4_15Dec"
+
+LDS$Sowing_Date_Schedule[LDS$SowDate_Cleaned_Datefmt>="2017-12-16" & LDS$Rabi2017_18==1]="T5_16Dec"
+LDS$Sowing_Date_Schedule[LDS$SowDate_Cleaned_Datefmt>="2018-12-16" & LDS$Rabi2017_18==0]="T5_16Dec"
+
+
+library(nnet)
+Sowing_cat_model_nnet = multinom(Sowing_Date_Schedule ~ D.q401_soilTexture+D.q402_drainClass+A.q112_fEdu_new+A.q114_socialCategory+IrrigSource+D.q402_drainClass+C.q306_cropLarestAreaHA+M.q702_hhMemAg+PrevCropHarvestDayfor1stJan2017_num+D.prevCrop_Rice+variety_type_NMWV+A.q111_fGenderdum+temp+precip+wc2.1_30s_elev+
+                  M.q708_marketDistance+nitrogen_0.5cm+sand_0.5cm+soc_5.15cm+O.largestPlotGPS.Latitude+O.largestPlotGPS.Longitude, data = LDS)
+
+summary(Sowing_cat_model_nnet)
+
+
+library(tidyr)
+library(tidyverse)
+library(knitr)
+
+Sowing_cat_model_nnet_dt=tidy(Sowing_cat_model_nnet, exponentiate = FALSE, conf.int = TRUE) %>%
+    kable(digits = 3, format = "markdown")
+
+Sowing_cat_model_nnet_dt <- tidy(Sowing_cat_model_nnet, exponentiate = FALSE, conf.int = TRUE)
+
+
+modelsummary(Sowing_cat_model_nnet, shape = model + term ~ response, stars=TRUE, coef_map=cm_sow)
+
+
+
+
+```
+
+### Characteristics space analysis
+
+```{r}
+library(rio)
+sowingschedule_traits=import("sowingschedule_traits.csv")
+
+library(data.table)
+LDS=data.table(LDS)
+
+library(tidyverse)
+library(dplyr)
+LDS_sowing_char_shares=LDS%>%
+  group_by(A.q103_district)%>%
+  count(Sowing_Date_Schedule)%>%
+  mutate(sowing_shares=n/sum(n))
+
+
+LDS_sowing_char_shares_T5_16Dec=subset(LDS_sowing_char_shares,LDS_sowing_char_shares$Sowing_Date_Schedule=="T5_16Dec")
+
+LDS_sowing_char_shares_T5_16Dec$Sowing_Date_Schedule=NULL
+LDS_sowing_char_shares_T5_16Dec$n=NULL
+
+LDS_sowing_char_shares_T5_16Dec=rename(LDS_sowing_char_shares_T5_16Dec,sowing_shares_T5_15Dec=sowing_shares)
+
+LDS_sowing_char_shares_updated=merge(LDS_sowing_char_shares,LDS_sowing_char_shares_T5_16Dec, by="A.q103_district")
+
+
+LDS_sow_char_data=merge(LDS_sowing_char_shares_updated,LDS,by=c("Sowing_Date_Schedule","A.q103_district"),all.y=FALSE)
+
+table(LDS_sow_char_data$A.q103_district)
+
+LDS_sow_char_data_traits=merge(sowingschedule_traits,LDS_sow_char_data,by.x=c("District","Sowingschedule"),by.y=c("A.q103_district","Sowing_Date_Schedule"))
+
+LDS_sow_char_data_traits$log_diff_sow_shares=log(LDS_sow_char_data_traits$sowing_shares)-log(LDS_sow_char_data_traits$sowing_shares_T5_15Dec)
+
+## all trait model ---------
+sowing_trait_model_all <- lm(log_diff_sow_shares ~ StabilityScore:(C.q306_cropLarestAreaAcre_cat + M.q702_hhMemAg_cat_lab + M.q708_marketDistance_cat) + Pscore:(C.q306_cropLarestAreaAcre_cat + M.q702_hhMemAg_cat_lab + M.q708_marketDistance_cat) + D.q402_drainClass + A.q111_fGenderdum + A.q112_fEdu_new + IrrigSource + D.q402_drainClass + PrevCropHarvestDayfor1stJan2017_num + D.prevCrop_Rice + variety_type_NMWV + A.q111_fGenderdum + temp + precip + wc2.1_30s_elev + nitrogen_0.5cm + sand_0.5cm + soc_5.15cm, data = LDS_sow_char_data_traits)
+
+summary(sowing_trait_model_all)
+
+
+modelsummary(sowing_trait_model_all, shape = ~statistic, coef_omit = "Interc", stars = TRUE, gof_map = c("nobs", "r.squared"))
+
+## Stability + adaptability ----
+sowing_trait_model_OLS=lm(log_diff_sow_shares~Pscore+StabilityScore+AdaptabilityScore+D.q402_drainClass+A.q111_fGenderdum+A.q112_fEdu_new+IrrigSource+D.q402_drainClass+C.q306_cropLarestAreaHA+M.q702_hhMemAg+PrevCropHarvestDayfor1stJan2017_num+D.prevCrop_Rice+variety_type_NMWV+A.q111_fGenderdum+temp+precip+wc2.1_30s_elev+
+                  M.q708_marketDistance+nitrogen_0.5cm+sand_0.5cm+soc_5.15cm,data=LDS_sow_char_data_traits)
+summary(sowing_trait_model_OLS)
+
+modelplot(sowing_trait_model_OLS,coef_omit="Interc")
+
+b <- list(geom_vline(xintercept = 0, color = 'orange'),
+          
+          geom_point(aes(y = term, x = estimate), alpha = .3, 
+                     size = 5, color = 'darkgreen'))
+
+sowing_trait_model_OLS_plot=modelplot(sowing_trait_model_OLS,coef_omit ="Interc",background = b,coef_map = cm_sow)
+sowing_trait_model_OLS_plot
+ggsave("figures/sowing_characteristic_model_plot.png")
+
+## Stability analysis 
+sowing_trait_model_OLS_stability <- lm(log_diff_sow_shares ~ Pscore + StabilityScore + D.q402_drainClass + A.q111_fGenderdum + A.q112_fEdu_new + IrrigSource + D.q402_drainClass + C.q306_cropLarestAreaHA + M.q702_hhMemAg + PrevCropHarvestDayfor1stJan2017_num + D.prevCrop_Rice + variety_type_NMWV + A.q111_fGenderdum + temp + precip + wc2.1_30s_elev +
+    M.q708_marketDistance + nitrogen_0.5cm + sand_0.5cm + soc_5.15cm, data = LDS_sow_char_data_traits)
+summary(sowing_trait_model_OLS_stability)
+
+modelplot(sowing_trait_model_OLS_stability, coef_omit = "Interc")
+
+
+
+b <- list(
+    geom_vline(xintercept = 0, color = "orange"),
+    geom_point(aes(y = term, x = estimate),
+        alpha = .3,
+        size = 5, color = "darkgreen"
+    )
+)
+
+sowing_trait_model_OLS_plot_stability <- modelplot(sowing_trait_model_OLS_stability, coef_omit = "Interc", background = b)
+sowing_trait_model_OLS_plot_stability
+
+
+# Adaptability
+sowing_trait_model_OLS_adaptability <- lm(log_diff_sow_shares ~ Pscore + AdaptabilityScore + D.q402_drainClass + A.q111_fGenderdum + A.q112_fEdu_new + IrrigSource + D.q402_drainClass + C.q306_cropLarestAreaHA + M.q702_hhMemAg + PrevCropHarvestDayfor1stJan2017_num + D.prevCrop_Rice + variety_type_NMWV + A.q111_fGenderdum + temp + precip + wc2.1_30s_elev +
+    M.q708_marketDistance + nitrogen_0.5cm + sand_0.5cm + soc_5.15cm, data = LDS_sow_char_data_traits)
+summary(sowing_trait_model_OLS_adaptability)
+
+modelplot(sowing_trait_model_OLS_adaptability, coef_omit = "Interc")
+
+b <- list(
+    geom_vline(xintercept = 0, color = "orange"),
+    geom_point(aes(y = term, x = estimate),
+        alpha = .3,
+        size = 5, color = "darkgreen"
+    )
+)
+
+sowing_trait_model_OLS_plot_adaptability <- modelplot(sowing_trait_model_OLS_adaptability, coef_omit = "Interc", background = b)
+sowing_trait_model_OLS_plot_adaptability
+
+
+
+sowing_trait_model_list <- list(sowing_trait_model_OLS_stability, sowing_trait_model_OLS_adaptability, sowing_trait_model_OLS)
+
+modelsummary(sowing_trait_model_list, coef_omit = "Interc", stars = TRUE)
+```
+
+
+# Interaction model
+
+```{r}
+
+all_char_model_list <- list("Sowing"=sowing_trait_model_all)
+
+modelsummary(all_char_model_list, shape = ~statistic, coef_omit = "Interc", stars = TRUE, gof_map = c("nobs", "r.squared"))
+
+
+```

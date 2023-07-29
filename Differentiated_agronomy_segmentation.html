@@ -1,0 +1,2803 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="MaxwellMkondiwa">
+
+<title>Characteristics Space Analysis of Adoption of Agronomic Innovations</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Differentiated_agronomy_segmentation_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Differentiated_agronomy_segmentation_files/libs/quarto-html/quarto.js"></script>
+<script src="Differentiated_agronomy_segmentation_files/libs/quarto-html/popper.min.js"></script>
+<script src="Differentiated_agronomy_segmentation_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Differentiated_agronomy_segmentation_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Differentiated_agronomy_segmentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Differentiated_agronomy_segmentation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Differentiated_agronomy_segmentation_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Differentiated_agronomy_segmentation_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Differentiated_agronomy_segmentation_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+<script src="Differentiated_agronomy_segmentation_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="Differentiated_agronomy_segmentation_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#create-new-variables" id="toc-create-new-variables" class="nav-link active" data-scroll-target="#create-new-variables"><span class="header-section-number">0.1</span> Create new variables</a></li>
+  <li><a href="#graphics-descriptives" id="toc-graphics-descriptives" class="nav-link" data-scroll-target="#graphics-descriptives"><span class="header-section-number">0.2</span> Graphics: Descriptives</a></li>
+  <li><a href="#table-descriptives" id="toc-table-descriptives" class="nav-link" data-scroll-target="#table-descriptives"><span class="header-section-number">1</span> Table: Descriptives</a>
+  <ul class="collapse">
+  <li><a href="#sowing-time" id="toc-sowing-time" class="nav-link" data-scroll-target="#sowing-time"><span class="header-section-number">1.1</span> Sowing time</a>
+  <ul class="collapse">
+  <li><a href="#multinomial-logit-model" id="toc-multinomial-logit-model" class="nav-link" data-scroll-target="#multinomial-logit-model"><span class="header-section-number">1.1.1</span> Multinomial logit model</a></li>
+  <li><a href="#characteristics-space-analysis" id="toc-characteristics-space-analysis" class="nav-link" data-scroll-target="#characteristics-space-analysis"><span class="header-section-number">1.1.2</span> Characteristics space analysis</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#interaction-model" id="toc-interaction-model" class="nav-link" data-scroll-target="#interaction-model"><span class="header-section-number">2</span> Interaction model</a></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Characteristics Space Analysis of Adoption of Agronomic Innovations</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>MaxwellMkondiwa </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="create-new-variables" class="level2" data-number="0.1">
+<h2 data-number="0.1" class="anchored" data-anchor-id="create-new-variables"><span class="header-section-number">0.1</span> Create new variables</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sp)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgdal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Please note that rgdal will be retired by the end of 2023,
+plan transition to sf/stars/terra functions using GDAL and PROJ
+at your earliest convenience.
+
+rgdal: version: 1.5-29, (SVN revision 1165M)
+Geospatial Data Abstraction Library extensions to R successfully loaded
+Loaded GDAL runtime: GDAL 3.2.1, released 2020/12/29
+Path to GDAL shared files: C:/Users/MMKONDIWA/OneDrive - CIMMYT/Documents/R/win-library/4.1/rgdal/gdal
+GDAL binary built with GEOS: TRUE 
+Loaded PROJ runtime: Rel. 7.2.1, January 1st, 2021, [PJ_VERSION: 721]
+Path to PROJ shared files: C:/Users/MMKONDIWA/OneDrive - CIMMYT/Documents/R/win-library/4.1/rgdal/proj
+PROJ CDN enabled: FALSE
+Linking to sp version:1.4-6
+To mute warnings of possible GDAL/OSR exportToProj4() degradation,
+use options("rgdal_show_exportToProj4_warnings"="none") before loading sp or rgdal.
+Overwritten PROJ_LIB was C:/Users/MMKONDIWA/OneDrive - CIMMYT/Documents/R/win-library/4.1/rgdal/proj</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgdal)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rutilstb)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bbplot)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtools)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"LDS_Public_Workspace.RData"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="do">### Categories</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="do">### Largest plot categories</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>C.q306_cropLarestAreaAcre_cat <span class="ot">&lt;-</span> <span class="fu">quantcut</span>(LDS<span class="sc">$</span>C.q306_cropLarestAreaAcre)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(LDS<span class="sc">$</span>C.q306_cropLarestAreaAcre_cat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+[0.0286,0.267]  (0.267,0.455]  (0.455,0.682]     (0.682,20] 
+          1930           1958           1870           1890 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ha per labor</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>M.q702_hhMemAg_cat_lab <span class="ot">&lt;-</span> <span class="fu">quantcut</span>(LDS<span class="sc">$</span>M.q702_hhMemAg)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(LDS<span class="sc">$</span>M.q702_hhMemAg_cat_lab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     1  (1,2]  (2,3] (3,12] 
+  3029   2484    962   1173 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distance to market </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span> M.q708_marketDistance_cat <span class="ot">&lt;-</span> <span class="fu">quantcut</span>(LDS<span class="sc">$</span> M.q708_marketDistance)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(LDS<span class="sc">$</span> M.q708_marketDistance_cat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ [0,2]  (2,3]  (3,6] (6,55] 
+  2788   1301   1971   1588 </code></pre>
+</div>
+</div>
+</section>
+<section id="graphics-descriptives" class="level2" data-number="0.2">
+<h2 data-number="0.2" class="anchored" data-anchor-id="graphics-descriptives"><span class="header-section-number">0.2</span> Graphics: Descriptives</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar graphs showing percentage of farmers adopting these practices</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>-- Attaching packages --------------------------------------- tidyverse 1.3.2 --
+v ggplot2 3.4.2     v purrr   0.3.4
+v tibble  3.1.6     v stringr 1.4.0
+v tidyr   1.2.0     v forcats 0.5.1
+v readr   2.1.2     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+x tidyr::unpack() masks rutilstb::unpack()</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>bar_chart<span class="ot">=</span><span class="cf">function</span>(dat,var){</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  dat<span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">drop_na</span>({{var}})<span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>({{var}}<span class="sc">:</span><span class="er">=</span><span class="fu">factor</span>({{var}})<span class="sc">|&gt;</span><span class="fu">fct_infreq</span>())<span class="sc">|&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y=</span>{{var}}),<span class="at">fill=</span><span class="st">"dodgerblue4"</span>)<span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>sow_plot<span class="ot">=</span><span class="fu">bar_chart</span>(LDS,Sowing_Date_Schedule)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">y=</span><span class="st">"Sowing dates"</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>sow_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Differentiated_agronomy_segmentation_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="table-descriptives" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Table: Descriptives</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fBasics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'fBasics'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:rgdal':
+
+    getDescription</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>desc_data <span class="ot">=</span> LDS[, <span class="fu">c</span>(<span class="st">"L.tonPerHectare"</span>, <span class="st">"Weedmanaged"</span>, <span class="st">"variety_type_NMWV"</span>, <span class="st">"Sowing_Date_Early"</span>, <span class="st">"G.q5305_irrigTimes"</span>, <span class="st">"I.q5512_lodgingPercent"</span>, <span class="st">"IrrigSource"</span>, <span class="st">"I.q5502_droughtSeverity"</span>, <span class="st">"D.q402_drainClass"</span>, <span class="st">"A.q112_fEdu_new"</span>, <span class="st">"C.q306_cropLarestAreaHA"</span>, <span class="st">"M.q708_marketDistance"</span>, <span class="st">"Nperha"</span>, <span class="st">"P2O5perha"</span>, <span class="st">"A.q111_fGenderdum"</span>, <span class="st">"gpw_v4_population_density_rev11_2020_30_sec"</span>, <span class="st">"temp"</span>, <span class="st">"precip"</span>, <span class="st">"wc2.1_30s_elev"</span>, <span class="st">"nitrogen_0.5cm"</span>, <span class="st">"sand_0.5cm"</span>, <span class="st">"soc_5.15cm"</span>)]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fastDummies)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>desc_data_plus <span class="ot">&lt;-</span> fastDummies<span class="sc">::</span><span class="fu">dummy_cols</span>(desc_data, <span class="at">select_columns =</span> <span class="fu">c</span>(<span class="st">"PumpEnergySource"</span>, <span class="st">"IrrigSource"</span>, <span class="st">"I.q5502_droughtSeverity"</span>, <span class="st">"D.q402_drainClass"</span>, <span class="st">"A.q112_fEdu_new"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fastDummies::dummy_cols(desc_data, select_columns = c("PumpEnergySource", : NOTE: The following select_columns input(s) is not a column in data.
+    </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'psych'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:fBasics':
+
+    tr</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:ggplot2':
+
+    %+%, alpha</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:gtools':
+
+    logit</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>summ_stats <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describe</span>(desc_data_plus)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>summ_stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                            vars    n    mean     sd  median
+L.tonPerHectare                                1 7648    2.99   0.85    3.00
+Weedmanaged                                    2 7647    0.76   0.43    1.00
+variety_type_NMWV                              3 7642    0.53   0.50    1.00
+Sowing_Date_Early                              4 7648    0.28   0.45    0.00
+G.q5305_irrigTimes                             5 7621    2.29   0.77    2.00
+I.q5512_lodgingPercent                         6 7647    6.15  10.68    5.00
+IrrigSource*                                   7 6829    3.66   0.64    4.00
+I.q5502_droughtSeverity*                       8 7648    2.47   1.27    3.00
+D.q402_drainClass*                             9 7648    1.97   0.56    2.00
+A.q112_fEdu_new*                              10 7648    3.56   1.56    3.00
+C.q306_cropLarestAreaHA                       11 7648    0.25   0.27    0.18
+M.q708_marketDistance                         12 7648    4.41   4.11    3.00
+Nperha                                        13 7648  130.22  37.04  132.54
+P2O5perha                                     14 7648   59.04  19.63   59.78
+A.q111_fGenderdum                             15 7648    0.03   0.17    0.00
+gpw_v4_population_density_rev11_2020_30_sec   16 7648 1484.07 624.43 1368.46
+temp                                          17 7648   26.06   0.31   26.05
+precip                                        18 7648  953.77 254.25  890.90
+wc2.1_30s_elev                                19 7648   68.33  21.49   67.00
+nitrogen_0.5cm                                20 7596    1.60   0.21    1.60
+sand_0.5cm                                    21 7596   29.88   3.02   30.00
+soc_5.15cm                                    22 7596   12.70   2.32   12.60
+IrrigSource_None                              23 6829    0.00   0.06    0.00
+IrrigSource_Conjuctive                        24 6829    0.01   0.07    0.00
+IrrigSource_DeepTubeWell                      25 6829    0.40   0.49    0.00
+IrrigSource_ShallowTubewell                   26 6829    0.52   0.50    1.00
+IrrigSource_Surface                           27 6829    0.08   0.27    0.00
+IrrigSource_NA                                28 7648    0.11   0.31    0.00
+I.q5502_droughtSeverity_None                  29 7648    0.40   0.49    0.00
+I.q5502_droughtSeverity_High                  30 7648    0.03   0.16    0.00
+I.q5502_droughtSeverity_Low                   31 7648    0.30   0.46    0.00
+I.q5502_droughtSeverity_Medium                32 7648    0.28   0.45    0.00
+D.q402_drainClass_LowLand                     33 7648    0.16   0.37    0.00
+D.q402_drainClass_MediumLand                  34 7648    0.71   0.45    1.00
+D.q402_drainClass_Upland                      35 7648    0.12   0.32    0.00
+D.q402_drainClass_VeryLowLand                 36 7648    0.01   0.10    0.00
+A.q112_fEdu_new_bachelors                     37 7648    0.09   0.28    0.00
+A.q112_fEdu_new_matriculation                 38 7648    0.21   0.41    0.00
+A.q112_fEdu_new_noSchooling                   39 7648    0.27   0.45    0.00
+A.q112_fEdu_new_Postgrad                      40 7648    0.02   0.14    0.00
+A.q112_fEdu_new_primary                       41 7648    0.30   0.46    0.00
+A.q112_fEdu_new_seniorSecondary               42 7648    0.11   0.31    0.00
+                                            trimmed    mad    min     max
+L.tonPerHectare                                2.96   0.74   0.20    6.50
+Weedmanaged                                    0.82   0.00   0.00    1.00
+variety_type_NMWV                              0.54   0.00   0.00    1.00
+Sowing_Date_Early                              0.22   0.00   0.00    1.00
+G.q5305_irrigTimes                             2.29   0.00   1.00    5.00
+I.q5512_lodgingPercent                         3.80   7.41   0.00  100.00
+IrrigSource*                                   3.62   0.00   1.00    5.00
+I.q5502_droughtSeverity*                       2.46   1.48   1.00    4.00
+D.q402_drainClass*                             1.96   0.00   1.00    4.00
+A.q112_fEdu_new*                               3.55   1.48   1.00    6.00
+C.q306_cropLarestAreaHA                        0.20   0.12   0.01    8.10
+M.q708_marketDistance                          3.77   2.97   0.00   55.00
+Nperha                                       131.23  37.29   0.00  298.47
+P2O5perha                                     58.49  19.14   0.00  212.96
+A.q111_fGenderdum                              0.00   0.00   0.00    1.00
+gpw_v4_population_density_rev11_2020_30_sec 1416.63 380.44 388.29 7209.30
+temp                                          26.07   0.26  24.98   26.61
+precip                                       939.01 267.61 599.80 1874.40
+wc2.1_30s_elev                                66.78  19.27  27.00  327.00
+nitrogen_0.5cm                                 1.59   0.15   1.10    2.70
+sand_0.5cm                                    29.81   2.97  19.00   47.00
+soc_5.15cm                                    12.63   2.22   7.30   24.30
+IrrigSource_None                               0.00   0.00   0.00    1.00
+IrrigSource_Conjuctive                         0.00   0.00   0.00    1.00
+IrrigSource_DeepTubeWell                       0.37   0.00   0.00    1.00
+IrrigSource_ShallowTubewell                    0.52   0.00   0.00    1.00
+IrrigSource_Surface                            0.00   0.00   0.00    1.00
+IrrigSource_NA                                 0.01   0.00   0.00    1.00
+I.q5502_droughtSeverity_None                   0.37   0.00   0.00    1.00
+I.q5502_droughtSeverity_High                   0.00   0.00   0.00    1.00
+I.q5502_droughtSeverity_Low                    0.24   0.00   0.00    1.00
+I.q5502_droughtSeverity_Medium                 0.23   0.00   0.00    1.00
+D.q402_drainClass_LowLand                      0.08   0.00   0.00    1.00
+D.q402_drainClass_MediumLand                   0.76   0.00   0.00    1.00
+D.q402_drainClass_Upland                       0.02   0.00   0.00    1.00
+D.q402_drainClass_VeryLowLand                  0.00   0.00   0.00    1.00
+A.q112_fEdu_new_bachelors                      0.00   0.00   0.00    1.00
+A.q112_fEdu_new_matriculation                  0.14   0.00   0.00    1.00
+A.q112_fEdu_new_noSchooling                    0.22   0.00   0.00    1.00
+A.q112_fEdu_new_Postgrad                       0.00   0.00   0.00    1.00
+A.q112_fEdu_new_primary                        0.25   0.00   0.00    1.00
+A.q112_fEdu_new_seniorSecondary                0.01   0.00   0.00    1.00
+                                              range  skew kurtosis   se
+L.tonPerHectare                                6.30  0.40     0.61 0.01
+Weedmanaged                                    1.00 -1.21    -0.53 0.00
+variety_type_NMWV                              1.00 -0.12    -1.99 0.01
+Sowing_Date_Early                              1.00  1.00    -1.01 0.01
+G.q5305_irrigTimes                             4.00  0.25    -0.11 0.01
+I.q5512_lodgingPercent                       100.00  3.95    20.91 0.12
+IrrigSource*                                   4.00 -0.02     0.32 0.01
+I.q5502_droughtSeverity*                       3.00 -0.09    -1.68 0.01
+D.q402_drainClass*                             3.00  0.30     1.29 0.01
+A.q112_fEdu_new*                               5.00  0.05    -1.30 0.02
+C.q306_cropLarestAreaHA                        8.09  6.78   113.96 0.00
+M.q708_marketDistance                         55.00  2.62    12.45 0.05
+Nperha                                       298.47 -0.24     0.22 0.42
+P2O5perha                                    212.96  0.20     1.16 0.22
+A.q111_fGenderdum                              1.00  5.61    29.47 0.00
+gpw_v4_population_density_rev11_2020_30_sec 6821.00  2.73    15.86 7.14
+temp                                           1.63 -0.59     0.66 0.00
+precip                                      1274.60  0.62     0.10 2.91
+wc2.1_30s_elev                               300.00  2.34    17.27 0.25
+nitrogen_0.5cm                                 1.60  0.59     1.22 0.00
+sand_0.5cm                                    28.00  0.52     2.87 0.03
+soc_5.15cm                                    17.00  0.46     0.92 0.03
+IrrigSource_None                               1.00 15.81   247.86 0.00
+IrrigSource_Conjuctive                         1.00 13.86   190.06 0.00
+IrrigSource_DeepTubeWell                       1.00  0.43    -1.82 0.01
+IrrigSource_ShallowTubewell                    1.00 -0.07    -2.00 0.01
+IrrigSource_Surface                            1.00  3.15     7.89 0.00
+IrrigSource_NA                                 1.00  2.54     4.46 0.00
+I.q5502_droughtSeverity_None                   1.00  0.43    -1.82 0.01
+I.q5502_droughtSeverity_High                   1.00  6.02    34.24 0.00
+I.q5502_droughtSeverity_Low                    1.00  0.90    -1.19 0.01
+I.q5502_droughtSeverity_Medium                 1.00  0.96    -1.08 0.01
+D.q402_drainClass_LowLand                      1.00  1.83     1.33 0.00
+D.q402_drainClass_MediumLand                   1.00 -0.92    -1.15 0.01
+D.q402_drainClass_Upland                       1.00  2.36     3.56 0.00
+D.q402_drainClass_VeryLowLand                  1.00 10.31   104.24 0.00
+A.q112_fEdu_new_bachelors                      1.00  2.95     6.68 0.00
+A.q112_fEdu_new_matriculation                  1.00  1.40    -0.04 0.00
+A.q112_fEdu_new_noSchooling                    1.00  1.02    -0.97 0.01
+A.q112_fEdu_new_Postgrad                       1.00  7.11    48.49 0.00
+A.q112_fEdu_new_primary                        1.00  0.86    -1.25 0.01
+A.q112_fEdu_new_seniorSecondary                1.00  2.55     4.50 0.00</code></pre>
+</div>
+</div>
+<section id="sowing-time" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="sowing-time"><span class="header-section-number">1.1</span> Sowing time</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tseries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'quantmod':
+  method            from
+  as.zoo.data.frame zoo </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'lubridate'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'data.table'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:lubridate':
+
+    hour, isoweek, mday, minute, month, quarter, second, wday, week,
+    yday, year</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    transpose</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:dplyr':
+
+    between, first, last</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>IrrigSource_use<span class="ot">=</span>LDS<span class="sc">$</span>IrrigSource</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>IrrigSource_use[LDS<span class="sc">$</span>IrrigSource_use<span class="sc">==</span><span class="st">"None"</span>]<span class="ot">=</span><span class="cn">NA</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>IrrigSource_use<span class="ot">&lt;-</span><span class="fu">relevel</span>(<span class="fu">factor</span>(LDS<span class="sc">$</span>IrrigSource_use), <span class="at">ref =</span> <span class="st">"Surface"</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>I.q5505_weedSeverity<span class="ot">&lt;-</span><span class="fu">relevel</span>(<span class="fu">factor</span>(LDS<span class="sc">$</span>I.q5505_weedSeverity), <span class="at">ref =</span> <span class="st">"None"</span>)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>A.q112_fEdu_new<span class="ot">&lt;-</span><span class="fu">relevel</span>(<span class="fu">factor</span>(LDS<span class="sc">$</span>A.q112_fEdu_new), <span class="at">ref =</span> <span class="st">"noSchooling"</span>)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>cm_sow <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"D.prevCrop_Rice"</span><span class="ot">=</span><span class="st">"Previous crop(rice)"</span>,<span class="st">"PrevCropHarvestDayfor1stJan2017_num"</span><span class="ot">=</span><span class="st">"Previous crop harvest date"</span>,<span class="st">"D.q402_drainClassMediumLand"</span><span class="ot">=</span><span class="st">"Drainage class (medium land)"</span>,</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>              <span class="st">"D.q402_drainClassUpland"</span><span class="ot">=</span><span class="st">"Drainage class (upland)"</span>,</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>              <span class="st">"D.q402_drainClassLowLand"</span><span class="ot">=</span><span class="st">"Drainage class (lowland) "</span>,</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>              <span class="st">"PumpEnergySourceBothElectricDiesel"</span><span class="ot">=</span><span class="st">"Pump energy source (both)"</span>,</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>              <span class="st">"PumpEnergySourceElectricity"</span><span class="ot">=</span><span class="st">"Pump energy source (electricity)"</span>,</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>              <span class="st">"I.q5502_droughtSeverityHigh"</span><span class="ot">=</span><span class="st">"Drought severity (high)"</span>,</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>              <span class="st">"I.q5502_droughtSeverityLow"</span><span class="ot">=</span><span class="st">"Drought severity (low)"</span>,</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">"I.q5502_droughtSeverityMedium"</span><span class="ot">=</span><span class="st">"Drought severity (medium)"</span>,</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>               <span class="st">"IrrigSourceConjuctive"</span><span class="ot">=</span><span class="st">"Conjuctive"</span>,</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>              <span class="st">"IrrigSourceDeepTubeWell"</span><span class="ot">=</span><span class="st">"Deep tubewell"</span>,</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>              <span class="st">"IrrigSourceShallowTubewell"</span><span class="ot">=</span><span class="st">"Shallow tubewell"</span>,</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>              <span class="st">'I.q5505_weedSeverityHigh'</span> <span class="ot">=</span> <span class="st">'Weed severity (High)'</span>,<span class="st">'I.q5505_weedSeverityLow'</span> <span class="ot">=</span> <span class="st">'Weed severity (Low)'</span>,<span class="st">'I.q5505_weedSeverityMedium'</span> <span class="ot">=</span> <span class="st">'Weed severity (Medium)'</span></span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>        ,<span class="st">'C.q306_cropLarestAreaHA'</span> <span class="ot">=</span> <span class="st">'Largest plot size(ha)'</span>,</span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"M.q702_hhMemAg"</span><span class="ot">=</span><span class="st">"Household size(ag)"</span>,</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>       <span class="st">'M.q708_marketDistance'</span> <span class="ot">=</span> <span class="st">'Distance to market (km)'</span>,<span class="st">"Nperha"</span><span class="ot">=</span><span class="st">"Applied Nitrogen"</span>,<span class="st">"P2O5perha"</span><span class="ot">=</span><span class="st">"Applied Phosphate"</span>,<span class="st">"variety_type_NMWV"</span><span class="ot">=</span><span class="st">"Variety type (NMWV)"</span>,</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>       <span class="st">"Sowing_Date_Early"</span><span class="ot">=</span><span class="st">"Early sowing"</span>,<span class="st">"G.q5305_irrigTimes"</span><span class="ot">=</span><span class="st">"Number of irrigations"</span>,</span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>       <span class="st">"A.q111_fGenderdum"</span><span class="ot">=</span><span class="st">"Male"</span>,<span class="st">"A.q112_fEdu_newprimary"</span><span class="ot">=</span><span class="st">"Education (Primary)"</span>,<span class="st">"A.q112_fEdu_newseniorSecondary"</span><span class="ot">=</span><span class="st">"Education (Senior Sec)"</span>,<span class="st">"A.q112_fEdu_newmatriculation"</span><span class="ot">=</span><span class="st">"Education (Matriculation)"</span>,<span class="st">"A.q112_fEdu_newbachelors"</span><span class="ot">=</span><span class="st">"Education (Bachelors)"</span>,<span class="st">"A.q112_fEdu_newPostgrad"</span><span class="ot">=</span><span class="st">"Education (Postgrad)"</span>,<span class="st">"gpw_v4_population_density_rev11_2020_30_sec"</span><span class="ot">=</span><span class="st">"Population density"</span>,<span class="st">"slope"</span><span class="ot">=</span><span class="st">"Slope"</span>,<span class="st">"tri"</span><span class="ot">=</span><span class="st">"Terrain Ruggedness"</span>,<span class="st">"temp"</span><span class="ot">=</span><span class="st">"Temperature"</span>,<span class="st">"precip"</span><span class="ot">=</span><span class="st">"Precipitation"</span>,<span class="st">"wc2.1_30s_elev"</span><span class="ot">=</span><span class="st">"Elevation(m)"</span>,</span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>       <span class="st">"nitrogen_0.5cm"</span><span class="ot">=</span><span class="st">"Soil N"</span>,<span class="st">"sand_0.5cm"</span><span class="ot">=</span><span class="st">"Sand"</span>,<span class="st">"soc_5.15cm"</span><span class="ot">=</span><span class="st">"Soil C"</span>,<span class="st">"O.largestPlotGPS.Latitude"</span><span class="ot">=</span><span class="st">"Latitude"</span>,<span class="st">"O.largestPlotGPS.Longitude"</span><span class="ot">=</span><span class="st">"Longitude"</span>)</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a><span class="co"># OLS --------------------------------------------------------------------------</span></span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a>m_ps_sow_ols <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sowing_Date_Early<span class="sc">~</span>D.q402_drainClass<span class="sc">+</span>A.q111_fGenderdum<span class="sc">+</span>A.q112_fEdu_new<span class="sc">+</span>IrrigSource<span class="sc">+</span>D.q402_drainClass<span class="sc">+</span>C.q306_cropLarestAreaHA<span class="sc">+</span>M.q702_hhMemAg<span class="sc">+</span>PrevCropHarvestDayfor1stJan2017_num<span class="sc">+</span>D.prevCrop_Rice<span class="sc">+</span>variety_type_NMWV<span class="sc">+</span>A.q111_fGenderdum<span class="sc">+</span>temp<span class="sc">+</span>precip<span class="sc">+</span>wc2<span class="fl">.1</span>_30s_elev<span class="sc">+</span></span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>                  M.q708_marketDistance<span class="sc">+</span>nitrogen_0<span class="fl">.5</span>cm<span class="sc">+</span>sand_0<span class="fl">.5</span>cm<span class="sc">+</span>soc_5<span class="fl">.15</span>cm<span class="sc">+</span>O.largestPlotGPS.Latitude<span class="sc">+</span>O.largestPlotGPS.Longitude, <span class="at">data =</span> LDS)</span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_ps_sow_ols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Sowing_Date_Early ~ D.q402_drainClass + A.q111_fGenderdum + 
+    A.q112_fEdu_new + IrrigSource + D.q402_drainClass + C.q306_cropLarestAreaHA + 
+    M.q702_hhMemAg + PrevCropHarvestDayfor1stJan2017_num + D.prevCrop_Rice + 
+    variety_type_NMWV + A.q111_fGenderdum + temp + precip + wc2.1_30s_elev + 
+    M.q708_marketDistance + nitrogen_0.5cm + sand_0.5cm + soc_5.15cm + 
+    O.largestPlotGPS.Latitude + O.largestPlotGPS.Longitude, data = LDS)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.5377 -0.2759 -0.1233  0.2789  1.0668 
+
+Coefficients:
+                                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                          1.633e+00  9.699e-01   1.683  0.09239 .  
+D.q402_drainClassMediumLand          1.087e-02  1.553e-02   0.700  0.48414    
+D.q402_drainClassUpland              4.558e-03  2.022e-02   0.225  0.82169    
+D.q402_drainClassVeryLowLand         6.479e-02  7.780e-02   0.833  0.40504    
+A.q111_fGenderdum                    5.343e-03  3.097e-02   0.173  0.86303    
+A.q112_fEdu_newbachelors            -3.599e-02  2.033e-02  -1.770  0.07679 .  
+A.q112_fEdu_newmatriculation        -1.346e-02  1.497e-02  -0.899  0.36875    
+A.q112_fEdu_newPostgrad             -3.275e-02  3.876e-02  -0.845  0.39826    
+A.q112_fEdu_newprimary              -3.227e-02  1.355e-02  -2.382  0.01726 *  
+A.q112_fEdu_newseniorSecondary      -5.113e-02  1.859e-02  -2.751  0.00596 ** 
+IrrigSourceConjuctive                4.572e-02  1.023e-01   0.447  0.65502    
+IrrigSourceDeepTubeWell              1.134e-02  7.739e-02   0.147  0.88350    
+IrrigSourceShallowTubewell           4.007e-02  7.723e-02   0.519  0.60392    
+IrrigSourceSurface                  -1.244e-02  7.861e-02  -0.158  0.87424    
+C.q306_cropLarestAreaHA              3.443e-02  1.913e-02   1.800  0.07197 .  
+M.q702_hhMemAg                       8.027e-03  3.334e-03   2.408  0.01608 *  
+PrevCropHarvestDayfor1stJan2017_num -6.692e-03  2.940e-04 -22.760  &lt; 2e-16 ***
+D.prevCrop_Rice                     -2.436e-01  1.935e-02 -12.588  &lt; 2e-16 ***
+variety_type_NMWV                    9.239e-02  1.179e-02   7.833 5.57e-15 ***
+temp                                 1.242e-02  1.699e-02   0.731  0.46462    
+precip                              -2.626e-05  2.085e-05  -1.259  0.20805    
+wc2.1_30s_elev                      -8.879e-04  3.229e-04  -2.750  0.00597 ** 
+M.q708_marketDistance                2.058e-03  1.332e-03   1.545  0.12233    
+nitrogen_0.5cm                      -5.363e-04  3.561e-02  -0.015  0.98799    
+sand_0.5cm                           2.774e-03  2.299e-03   1.206  0.22776    
+soc_5.15cm                          -3.087e-03  3.388e-03  -0.911  0.36234    
+O.largestPlotGPS.Latitude            1.819e-02  1.321e-02   1.376  0.16880    
+O.largestPlotGPS.Longitude           1.261e-03  7.658e-03   0.165  0.86926    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3946 on 6075 degrees of freedom
+  (1545 observations deleted due to missingness)
+Multiple R-squared:  0.234, Adjusted R-squared:  0.2306 
+F-statistic: 68.72 on 27 and 6075 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'modelsummary'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:psych':
+
+    SD</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">'orange'</span>),</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> term, <span class="at">x =</span> estimate), <span class="at">alpha =</span> .<span class="dv">3</span>, </span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">size =</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="st">'darkgreen'</span>))</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>Sowmodels_ols_plot<span class="ot">=</span><span class="fu">modelplot</span>(m_ps_sow_ols,<span class="at">coef_omit =</span><span class="st">"Interc"</span>,<span class="at">background =</span> b,<span class="at">coef_map =</span> cm_sow)</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>Sowmodels_ols_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Differentiated_agronomy_segmentation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="multinomial-logit-model" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="multinomial-logit-model"><span class="header-section-number">1.1.1</span> Multinomial logit model</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Sowing schedules -------------------------------</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>Sowing_Date_Schedule[LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&lt;=</span><span class="st">"2017-11-10"</span> <span class="sc">&amp;</span> LDS<span class="sc">$</span>Rabi2017_18<span class="sc">==</span><span class="dv">1</span>]<span class="ot">=</span><span class="st">"T1_10Nov"</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>Sowing_Date_Schedule[LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&lt;=</span><span class="st">"2018-11-21"</span> <span class="sc">&amp;</span> LDS<span class="sc">$</span>Rabi2017_18<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="st">"T1_10Nov"</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>Sowing_Date_Schedule[LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&gt;=</span><span class="st">"2017-11-11"</span><span class="sc">&amp;</span> LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&lt;=</span><span class="st">"2017-11-20"</span> <span class="sc">&amp;</span> LDS<span class="sc">$</span>Rabi2017_18<span class="sc">==</span><span class="dv">1</span>]<span class="ot">=</span><span class="st">"T2_20Nov"</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>Sowing_Date_Schedule[LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&gt;=</span><span class="st">"2018-11-11"</span><span class="sc">&amp;</span> LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&lt;=</span><span class="st">"2018-11-20"</span> <span class="sc">&amp;</span> LDS<span class="sc">$</span>Rabi2017_18<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="st">"T2_20Nov"</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>Sowing_Date_Schedule[LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&gt;=</span><span class="st">"2017-11-21"</span><span class="sc">&amp;</span> LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&lt;=</span><span class="st">"2017-11-30"</span> <span class="sc">&amp;</span> LDS<span class="sc">$</span>Rabi2017_18<span class="sc">==</span><span class="dv">1</span>]<span class="ot">=</span><span class="st">"T3_30Nov"</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>Sowing_Date_Schedule[LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&gt;=</span><span class="st">"2018-11-21"</span><span class="sc">&amp;</span> LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&lt;=</span><span class="st">"2018-11-30"</span> <span class="sc">&amp;</span> LDS<span class="sc">$</span>Rabi2017_18<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="st">"T3_30Nov"</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>Sowing_Date_Schedule[LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&gt;=</span><span class="st">"2017-12-1"</span><span class="sc">&amp;</span> LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&lt;=</span><span class="st">"2017-12-15"</span> <span class="sc">&amp;</span> LDS<span class="sc">$</span>Rabi2017_18<span class="sc">==</span><span class="dv">1</span>]<span class="ot">=</span><span class="st">"T4_15Dec"</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>Sowing_Date_Schedule[LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&gt;=</span><span class="st">"2018-12-1"</span><span class="sc">&amp;</span> LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&lt;=</span><span class="st">"2018-12-15"</span> <span class="sc">&amp;</span> LDS<span class="sc">$</span>Rabi2017_18<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="st">"T4_15Dec"</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>Sowing_Date_Schedule[LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&gt;=</span><span class="st">"2017-12-1"</span><span class="sc">&amp;</span> LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&lt;=</span><span class="st">"2017-12-15"</span> <span class="sc">&amp;</span> LDS<span class="sc">$</span>Rabi2017_18<span class="sc">==</span><span class="dv">1</span>]<span class="ot">=</span><span class="st">"T4_15Dec"</span></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>Sowing_Date_Schedule[LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&gt;=</span><span class="st">"2018-12-1"</span><span class="sc">&amp;</span> LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&lt;=</span><span class="st">"2018-12-15"</span> <span class="sc">&amp;</span> LDS<span class="sc">$</span>Rabi2017_18<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="st">"T4_15Dec"</span></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>Sowing_Date_Schedule[LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&gt;=</span><span class="st">"2017-12-16"</span> <span class="sc">&amp;</span> LDS<span class="sc">$</span>Rabi2017_18<span class="sc">==</span><span class="dv">1</span>]<span class="ot">=</span><span class="st">"T5_16Dec"</span></span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>LDS<span class="sc">$</span>Sowing_Date_Schedule[LDS<span class="sc">$</span>SowDate_Cleaned_Datefmt<span class="sc">&gt;=</span><span class="st">"2018-12-16"</span> <span class="sc">&amp;</span> LDS<span class="sc">$</span>Rabi2017_18<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="st">"T5_16Dec"</span></span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nnet)</span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>Sowing_cat_model_nnet <span class="ot">=</span> <span class="fu">multinom</span>(Sowing_Date_Schedule <span class="sc">~</span> D.q401_soilTexture<span class="sc">+</span>D.q402_drainClass<span class="sc">+</span>A.q112_fEdu_new<span class="sc">+</span>A.q114_socialCategory<span class="sc">+</span>IrrigSource<span class="sc">+</span>D.q402_drainClass<span class="sc">+</span>C.q306_cropLarestAreaHA<span class="sc">+</span>M.q702_hhMemAg<span class="sc">+</span>PrevCropHarvestDayfor1stJan2017_num<span class="sc">+</span>D.prevCrop_Rice<span class="sc">+</span>variety_type_NMWV<span class="sc">+</span>A.q111_fGenderdum<span class="sc">+</span>temp<span class="sc">+</span>precip<span class="sc">+</span>wc2<span class="fl">.1</span>_30s_elev<span class="sc">+</span></span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>                  M.q708_marketDistance<span class="sc">+</span>nitrogen_0<span class="fl">.5</span>cm<span class="sc">+</span>sand_0<span class="fl">.5</span>cm<span class="sc">+</span>soc_5<span class="fl">.15</span>cm<span class="sc">+</span>O.largestPlotGPS.Latitude<span class="sc">+</span>O.largestPlotGPS.Longitude, <span class="at">data =</span> LDS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># weights:  175 (136 variable)
+initial  value 9822.399580 
+iter  10 value 8307.939089
+iter  20 value 7358.985621
+iter  30 value 7163.200504
+iter  40 value 6819.388391
+iter  50 value 6367.718972
+iter  60 value 6251.205868
+iter  70 value 6182.959904
+iter  80 value 6132.686708
+iter  90 value 6102.132595
+iter 100 value 6095.991506
+final  value 6095.991506 
+stopped after 100 iterations</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Sowing_cat_model_nnet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call:
+multinom(formula = Sowing_Date_Schedule ~ D.q401_soilTexture + 
+    D.q402_drainClass + A.q112_fEdu_new + A.q114_socialCategory + 
+    IrrigSource + D.q402_drainClass + C.q306_cropLarestAreaHA + 
+    M.q702_hhMemAg + PrevCropHarvestDayfor1stJan2017_num + D.prevCrop_Rice + 
+    variety_type_NMWV + A.q111_fGenderdum + temp + precip + wc2.1_30s_elev + 
+    M.q708_marketDistance + nitrogen_0.5cm + sand_0.5cm + soc_5.15cm + 
+    O.largestPlotGPS.Latitude + O.largestPlotGPS.Longitude, data = LDS)
+
+Coefficients:
+         (Intercept) D.q401_soilTextureLight D.q401_soilTextureMedium
+T4_15Dec   -2.370977              -0.2099083              -0.09267786
+T3_30Nov    2.459372              -0.3919687              -0.09680107
+T2_20Nov    4.108473              -0.7537101              -0.52508280
+T1_10Nov    1.497734              -0.7782348              -0.60801524
+         D.q402_drainClassMediumLand D.q402_drainClassUpland
+T4_15Dec                   0.3624245               0.5138686
+T3_30Nov                   1.0068631               0.9064581
+T2_20Nov                   1.0714345               1.0532346
+T1_10Nov                   0.8094767               0.1310112
+         D.q402_drainClassVeryLowLand A.q112_fEdu_newbachelors
+T4_15Dec                    0.2889210                0.1864553
+T3_30Nov                   -0.7880595                0.4527444
+T2_20Nov                   -0.6475703                0.1757130
+T1_10Nov                    0.1941835                0.5177468
+         A.q112_fEdu_newmatriculation A.q112_fEdu_newPostgrad
+T4_15Dec                    0.1140916              0.09263176
+T3_30Nov                    0.6556773              0.76719257
+T2_20Nov                    0.6065467              0.56810536
+T1_10Nov                    0.3426779              0.04965784
+         A.q112_fEdu_newprimary A.q112_fEdu_newseniorSecondary
+T4_15Dec            -0.05193821                      0.3148194
+T3_30Nov             0.34287320                      0.7449227
+T2_20Nov             0.05132479                      0.3983746
+T1_10Nov             0.26659459                      0.2924145
+         A.q114_socialCategoryOBC A.q114_socialCategoryOther
+T4_15Dec               0.06363518                -0.05724331
+T3_30Nov               0.03516627                 1.16144904
+T2_20Nov               0.17521090                 0.26011099
+T1_10Nov               0.28453579                 0.37057546
+         A.q114_socialCategorySC A.q114_socialCategoryST IrrigSourceConjuctive
+T4_15Dec              0.11623249               0.5115436             0.3198871
+T3_30Nov              0.04479331               0.4743870             0.8824088
+T2_20Nov              0.03181295               0.4680561             1.7713306
+T1_10Nov              0.10534053               0.8080443            -1.7078256
+         IrrigSourceDeepTubeWell IrrigSourceShallowTubewell IrrigSourceSurface
+T4_15Dec               0.2855109                  0.2218536          0.3825984
+T3_30Nov               1.9953556                  1.5903752          1.8400917
+T2_20Nov               2.1079483                  1.9637945          1.8094128
+T1_10Nov               2.7714949                  2.4886456          2.1970761
+         C.q306_cropLarestAreaHA M.q702_hhMemAg
+T4_15Dec              -0.2544417    -0.03374200
+T3_30Nov              -0.7071100    -0.04353552
+T2_20Nov              -0.5173284     0.02901687
+T1_10Nov              -0.1504181     0.02562198
+         PrevCropHarvestDayfor1stJan2017_num D.prevCrop_Rice variety_type_NMWV
+T4_15Dec                         -0.09403805       0.6327811         0.3902490
+T3_30Nov                         -0.20953140       1.5055319         0.9111585
+T2_20Nov                         -0.25301663       1.0746768         1.2406821
+T1_10Nov                         -0.25531582      -0.3754613         1.7325813
+         A.q111_fGenderdum      temp        precip wc2.1_30s_elev
+T4_15Dec         0.2496824 0.3027937 -9.895598e-05    0.005728663
+T3_30Nov         0.9919183 0.4878238 -5.271186e-04   -0.001244744
+T2_20Nov         0.9240330 0.6299771 -7.022718e-04   -0.002186620
+T1_10Nov         0.5094096 0.8640209 -1.500608e-04   -0.011142359
+         M.q708_marketDistance nitrogen_0.5cm  sand_0.5cm   soc_5.15cm
+T4_15Dec          0.0058682656     -0.3761697 -0.05759807 -0.003393182
+T3_30Nov          0.0006673507     -0.1438873 -0.01964878 -0.061567898
+T2_20Nov          0.0161993796     -0.2083346 -0.02069268 -0.096063979
+T1_10Nov          0.0121061741      0.7394000 -0.08100817 -0.098903316
+         O.largestPlotGPS.Latitude O.largestPlotGPS.Longitude
+T4_15Dec                 0.4581009                  0.1833444
+T3_30Nov                 1.0203983                  0.3023733
+T2_20Nov                 1.0676554                  0.3839206
+T1_10Nov                 1.0016435                  0.3601839
+
+Std. Errors:
+          (Intercept) D.q401_soilTextureLight D.q401_soilTextureMedium
+T4_15Dec 0.0009535326              0.11412163               0.09292508
+T3_30Nov 0.0009028447              0.08833984               0.07482954
+T2_20Nov 0.0008073782              0.10187546               0.07942396
+T1_10Nov 0.0007062611              0.04621957               0.07656980
+         D.q402_drainClassMediumLand D.q402_drainClassUpland
+T4_15Dec                  0.08819223              0.10474926
+T3_30Nov                  0.06973673              0.08259164
+T2_20Nov                  0.07812267              0.09526817
+T1_10Nov                  0.07426954              0.05019634
+         D.q402_drainClassVeryLowLand A.q112_fEdu_newbachelors
+T4_15Dec                  0.004293554               0.11414633
+T3_30Nov                  0.003796336               0.08751897
+T2_20Nov                  0.006021485               0.09749871
+T1_10Nov                  0.004946752               0.10342844
+         A.q112_fEdu_newmatriculation A.q112_fEdu_newPostgrad
+T4_15Dec                   0.08893799             0.025109269
+T3_30Nov                   0.07107428             0.048903119
+T2_20Nov                   0.07690718             0.037483941
+T1_10Nov                   0.08937826             0.004248004
+         A.q112_fEdu_newprimary A.q112_fEdu_newseniorSecondary
+T4_15Dec             0.08039226                     0.10716980
+T3_30Nov             0.06189512                     0.08114881
+T2_20Nov             0.06848765                     0.09136930
+T1_10Nov             0.08073892                     0.10039665
+         A.q114_socialCategoryOBC A.q114_socialCategoryOther
+T4_15Dec               0.07262485                0.003400547
+T3_30Nov               0.05834043                0.004624062
+T2_20Nov               0.06176726                0.002263970
+T1_10Nov               0.07114132                0.001490243
+         A.q114_socialCategorySC A.q114_socialCategoryST IrrigSourceConjuctive
+T4_15Dec              0.09081055             0.076328364          4.101358e-03
+T3_30Nov              0.07197860             0.115708081          4.258760e-03
+T2_20Nov              0.07836679             0.072512021          4.649895e-03
+T1_10Nov              0.04634209             0.007290699          3.598054e-05
+         IrrigSourceDeepTubeWell IrrigSourceShallowTubewell IrrigSourceSurface
+T4_15Dec              0.05507226                 0.05370875         0.07141303
+T3_30Nov              0.04872989                 0.04804203         0.06874223
+T2_20Nov              0.04925076                 0.04621118         0.05932955
+T1_10Nov              0.04812885                 0.04790978         0.01005404
+         C.q306_cropLarestAreaHA M.q702_hhMemAg
+T4_15Dec              0.11722491     0.03246057
+T3_30Nov              0.09131176     0.03746899
+T2_20Nov              0.09151160     0.04106216
+T1_10Nov              0.10898773     0.05636953
+         PrevCropHarvestDayfor1stJan2017_num D.prevCrop_Rice variety_type_NMWV
+T4_15Dec                         0.005693835      0.02984784        0.08266326
+T3_30Nov                         0.006917437      0.09417157        0.06689453
+T2_20Nov                         0.007372259      0.08639398        0.07351768
+T1_10Nov                         0.007694521      0.09814666        0.10578075
+         A.q111_fGenderdum       temp       precip wc2.1_30s_elev
+T4_15Dec       0.035150245 0.10117638 0.0002483554    0.002753675
+T3_30Nov       0.111602011 0.08885079 0.0002696070    0.003359133
+T2_20Nov       0.082696753 0.09907430 0.0002892680    0.004153434
+T1_10Nov       0.006785255 0.10769368 0.0003630793    0.007568886
+         M.q708_marketDistance nitrogen_0.5cm sand_0.5cm soc_5.15cm
+T4_15Dec            0.01324635     0.03523529 0.02344185 0.02696337
+T3_30Nov            0.01523651     0.13046164 0.02568832 0.03066814
+T2_20Nov            0.01673817     0.09503973 0.02766863 0.03364044
+T1_10Nov            0.02216642     0.01499127 0.03947651 0.04431054
+         O.largestPlotGPS.Latitude O.largestPlotGPS.Longitude
+T4_15Dec                0.06754346                 0.03578474
+T3_30Nov                0.05918578                 0.03664625
+T2_20Nov                0.06712115                 0.04018201
+T1_10Nov                0.10073531                 0.04224154
+
+Residual Deviance: 12191.98 
+AIC: 12463.98 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>Sowing_cat_model_nnet_dt<span class="ot">=</span><span class="fu">tidy</span>(Sowing_cat_model_nnet, <span class="at">exponentiate =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>, <span class="at">format =</span> <span class="st">"markdown"</span>)</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>Sowing_cat_model_nnet_dt <span class="ot">&lt;-</span> <span class="fu">tidy</span>(Sowing_cat_model_nnet, <span class="at">exponentiate =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(Sowing_cat_model_nnet, <span class="at">shape =</span> model <span class="sc">+</span> term <span class="sc">~</span> response, <span class="at">stars=</span><span class="cn">TRUE</span>, <span class="at">coef_map=</span>cm_sow)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">T4_15Dec</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">T3_30Nov</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">T2_20Nov</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">T1_10Nov</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Model 1</td>
+<td style="text-align: left;">Previous crop(rice)</td>
+<td style="text-align: center;">0.633***</td>
+<td style="text-align: center;">1.506***</td>
+<td style="text-align: center;">1.075***</td>
+<td style="text-align: center;">-0.375***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.030)</td>
+<td style="text-align: center;">(0.094)</td>
+<td style="text-align: center;">(0.086)</td>
+<td style="text-align: center;">(0.098)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Previous crop harvest date</td>
+<td style="text-align: center;">-0.094***</td>
+<td style="text-align: center;">-0.210***</td>
+<td style="text-align: center;">-0.253***</td>
+<td style="text-align: center;">-0.255***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.006)</td>
+<td style="text-align: center;">(0.007)</td>
+<td style="text-align: center;">(0.007)</td>
+<td style="text-align: center;">(0.008)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Drainage class (medium land)</td>
+<td style="text-align: center;">0.362***</td>
+<td style="text-align: center;">1.007***</td>
+<td style="text-align: center;">1.071***</td>
+<td style="text-align: center;">0.809***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.088)</td>
+<td style="text-align: center;">(0.070)</td>
+<td style="text-align: center;">(0.078)</td>
+<td style="text-align: center;">(0.074)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Drainage class (upland)</td>
+<td style="text-align: center;">0.514***</td>
+<td style="text-align: center;">0.906***</td>
+<td style="text-align: center;">1.053***</td>
+<td style="text-align: center;">0.131**</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.105)</td>
+<td style="text-align: center;">(0.083)</td>
+<td style="text-align: center;">(0.095)</td>
+<td style="text-align: center;">(0.050)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Conjuctive</td>
+<td style="text-align: center;">0.320***</td>
+<td style="text-align: center;">0.882***</td>
+<td style="text-align: center;">1.771***</td>
+<td style="text-align: center;">-1.708***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.004)</td>
+<td style="text-align: center;">(0.004)</td>
+<td style="text-align: center;">(0.005)</td>
+<td style="text-align: center;">(0.000)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Deep tubewell</td>
+<td style="text-align: center;">0.286***</td>
+<td style="text-align: center;">1.995***</td>
+<td style="text-align: center;">2.108***</td>
+<td style="text-align: center;">2.771***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.055)</td>
+<td style="text-align: center;">(0.049)</td>
+<td style="text-align: center;">(0.049)</td>
+<td style="text-align: center;">(0.048)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Shallow tubewell</td>
+<td style="text-align: center;">0.222***</td>
+<td style="text-align: center;">1.590***</td>
+<td style="text-align: center;">1.964***</td>
+<td style="text-align: center;">2.489***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.054)</td>
+<td style="text-align: center;">(0.048)</td>
+<td style="text-align: center;">(0.046)</td>
+<td style="text-align: center;">(0.048)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Largest plot size(ha)</td>
+<td style="text-align: center;">-0.254*</td>
+<td style="text-align: center;">-0.707***</td>
+<td style="text-align: center;">-0.517***</td>
+<td style="text-align: center;">-0.150</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.117)</td>
+<td style="text-align: center;">(0.091)</td>
+<td style="text-align: center;">(0.092)</td>
+<td style="text-align: center;">(0.109)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Household size(ag)</td>
+<td style="text-align: center;">-0.034</td>
+<td style="text-align: center;">-0.044</td>
+<td style="text-align: center;">0.029</td>
+<td style="text-align: center;">0.026</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.032)</td>
+<td style="text-align: center;">(0.037)</td>
+<td style="text-align: center;">(0.041)</td>
+<td style="text-align: center;">(0.056)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Distance to market (km)</td>
+<td style="text-align: center;">0.006</td>
+<td style="text-align: center;">0.001</td>
+<td style="text-align: center;">0.016</td>
+<td style="text-align: center;">0.012</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.013)</td>
+<td style="text-align: center;">(0.015)</td>
+<td style="text-align: center;">(0.017)</td>
+<td style="text-align: center;">(0.022)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Variety type (NMWV)</td>
+<td style="text-align: center;">0.390***</td>
+<td style="text-align: center;">0.911***</td>
+<td style="text-align: center;">1.241***</td>
+<td style="text-align: center;">1.733***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.083)</td>
+<td style="text-align: center;">(0.067)</td>
+<td style="text-align: center;">(0.074)</td>
+<td style="text-align: center;">(0.106)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Male</td>
+<td style="text-align: center;">0.250***</td>
+<td style="text-align: center;">0.992***</td>
+<td style="text-align: center;">0.924***</td>
+<td style="text-align: center;">0.509***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.035)</td>
+<td style="text-align: center;">(0.112)</td>
+<td style="text-align: center;">(0.083)</td>
+<td style="text-align: center;">(0.007)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Education (Primary)</td>
+<td style="text-align: center;">-0.052</td>
+<td style="text-align: center;">0.343***</td>
+<td style="text-align: center;">0.051</td>
+<td style="text-align: center;">0.267***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.080)</td>
+<td style="text-align: center;">(0.062)</td>
+<td style="text-align: center;">(0.068)</td>
+<td style="text-align: center;">(0.081)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Education (Senior Sec)</td>
+<td style="text-align: center;">0.315**</td>
+<td style="text-align: center;">0.745***</td>
+<td style="text-align: center;">0.398***</td>
+<td style="text-align: center;">0.292**</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.107)</td>
+<td style="text-align: center;">(0.081)</td>
+<td style="text-align: center;">(0.091)</td>
+<td style="text-align: center;">(0.100)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Education (Matriculation)</td>
+<td style="text-align: center;">0.114</td>
+<td style="text-align: center;">0.656***</td>
+<td style="text-align: center;">0.607***</td>
+<td style="text-align: center;">0.343***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.089)</td>
+<td style="text-align: center;">(0.071)</td>
+<td style="text-align: center;">(0.077)</td>
+<td style="text-align: center;">(0.089)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Education (Bachelors)</td>
+<td style="text-align: center;">0.186</td>
+<td style="text-align: center;">0.453***</td>
+<td style="text-align: center;">0.176+</td>
+<td style="text-align: center;">0.518***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.114)</td>
+<td style="text-align: center;">(0.088)</td>
+<td style="text-align: center;">(0.097)</td>
+<td style="text-align: center;">(0.103)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Education (Postgrad)</td>
+<td style="text-align: center;">0.093***</td>
+<td style="text-align: center;">0.767***</td>
+<td style="text-align: center;">0.568***</td>
+<td style="text-align: center;">0.050***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.025)</td>
+<td style="text-align: center;">(0.049)</td>
+<td style="text-align: center;">(0.037)</td>
+<td style="text-align: center;">(0.004)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Temperature</td>
+<td style="text-align: center;">0.303**</td>
+<td style="text-align: center;">0.488***</td>
+<td style="text-align: center;">0.630***</td>
+<td style="text-align: center;">0.864***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.101)</td>
+<td style="text-align: center;">(0.089)</td>
+<td style="text-align: center;">(0.099)</td>
+<td style="text-align: center;">(0.108)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Precipitation</td>
+<td style="text-align: center;">0.000</td>
+<td style="text-align: center;">-0.001+</td>
+<td style="text-align: center;">-0.001*</td>
+<td style="text-align: center;">0.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.000)</td>
+<td style="text-align: center;">(0.000)</td>
+<td style="text-align: center;">(0.000)</td>
+<td style="text-align: center;">(0.000)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Elevation(m)</td>
+<td style="text-align: center;">0.006*</td>
+<td style="text-align: center;">-0.001</td>
+<td style="text-align: center;">-0.002</td>
+<td style="text-align: center;">-0.011</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.003)</td>
+<td style="text-align: center;">(0.003)</td>
+<td style="text-align: center;">(0.004)</td>
+<td style="text-align: center;">(0.008)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Soil N</td>
+<td style="text-align: center;">-0.376***</td>
+<td style="text-align: center;">-0.144</td>
+<td style="text-align: center;">-0.208*</td>
+<td style="text-align: center;">0.739***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.035)</td>
+<td style="text-align: center;">(0.130)</td>
+<td style="text-align: center;">(0.095)</td>
+<td style="text-align: center;">(0.015)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Sand</td>
+<td style="text-align: center;">-0.058*</td>
+<td style="text-align: center;">-0.020</td>
+<td style="text-align: center;">-0.021</td>
+<td style="text-align: center;">-0.081*</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.023)</td>
+<td style="text-align: center;">(0.026)</td>
+<td style="text-align: center;">(0.028)</td>
+<td style="text-align: center;">(0.039)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Soil C</td>
+<td style="text-align: center;">-0.003</td>
+<td style="text-align: center;">-0.062*</td>
+<td style="text-align: center;">-0.096**</td>
+<td style="text-align: center;">-0.099*</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.027)</td>
+<td style="text-align: center;">(0.031)</td>
+<td style="text-align: center;">(0.034)</td>
+<td style="text-align: center;">(0.044)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Latitude</td>
+<td style="text-align: center;">0.458***</td>
+<td style="text-align: center;">1.020***</td>
+<td style="text-align: center;">1.068***</td>
+<td style="text-align: center;">1.002***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.068)</td>
+<td style="text-align: center;">(0.059)</td>
+<td style="text-align: center;">(0.067)</td>
+<td style="text-align: center;">(0.101)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Longitude</td>
+<td style="text-align: center;">0.183***</td>
+<td style="text-align: center;">0.302***</td>
+<td style="text-align: center;">0.384***</td>
+<td style="text-align: center;">0.360***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.036)</td>
+<td style="text-align: center;">(0.037)</td>
+<td style="text-align: center;">(0.040)</td>
+<td style="text-align: center;">(0.042)</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="characteristics-space-analysis" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="characteristics-space-analysis"><span class="header-section-number">1.1.2</span> Characteristics space analysis</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>sowingschedule_traits<span class="ot">=</span><span class="fu">import</span>(<span class="st">"sowingschedule_traits.csv"</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>LDS<span class="ot">=</span><span class="fu">data.table</span>(LDS)</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>LDS_sowing_char_shares<span class="ot">=</span>LDS<span class="sc">%&gt;%</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(A.q103_district)<span class="sc">%&gt;%</span></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Sowing_Date_Schedule)<span class="sc">%&gt;%</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sowing_shares=</span>n<span class="sc">/</span><span class="fu">sum</span>(n))</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>LDS_sowing_char_shares_T5_16Dec<span class="ot">=</span><span class="fu">subset</span>(LDS_sowing_char_shares,LDS_sowing_char_shares<span class="sc">$</span>Sowing_Date_Schedule<span class="sc">==</span><span class="st">"T5_16Dec"</span>)</span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>LDS_sowing_char_shares_T5_16Dec<span class="sc">$</span>Sowing_Date_Schedule<span class="ot">=</span><span class="cn">NULL</span></span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>LDS_sowing_char_shares_T5_16Dec<span class="sc">$</span>n<span class="ot">=</span><span class="cn">NULL</span></span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>LDS_sowing_char_shares_T5_16Dec<span class="ot">=</span><span class="fu">rename</span>(LDS_sowing_char_shares_T5_16Dec,<span class="at">sowing_shares_T5_15Dec=</span>sowing_shares)</span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>LDS_sowing_char_shares_updated<span class="ot">=</span><span class="fu">merge</span>(LDS_sowing_char_shares,LDS_sowing_char_shares_T5_16Dec, <span class="at">by=</span><span class="st">"A.q103_district"</span>)</span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>LDS_sow_char_data<span class="ot">=</span><span class="fu">merge</span>(LDS_sowing_char_shares_updated,LDS,<span class="at">by=</span><span class="fu">c</span>(<span class="st">"Sowing_Date_Schedule"</span>,<span class="st">"A.q103_district"</span>),<span class="at">all.y=</span><span class="cn">FALSE</span>)</span>
+<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(LDS_sow_char_data<span class="sc">$</span>A.q103_district)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+         Arah         Arwal    Aurangabad         Banka     Bhagalpur 
+          208           181           194           176           207 
+        Buxar     Chandauli EastChamparan          Gaya       Gazipur 
+          207           208           205           193           210 
+    Gopalganj     Jehanabad        Kaimur       Katihar      Khagaria 
+          210           189           204           115           205 
+   Kushinagar    Lakhisarai     Madhepura   Maharajganj           Mau 
+          195           195           169           210           204 
+       Munger       Nalanda         Patna        Rohtas       Saharsa 
+          210           196           203           196           163 
+        Saran       Sheohar        Supaul WestChamparan 
+          209           209           206           205 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>LDS_sow_char_data_traits<span class="ot">=</span><span class="fu">merge</span>(sowingschedule_traits,LDS_sow_char_data,<span class="at">by.x=</span><span class="fu">c</span>(<span class="st">"District"</span>,<span class="st">"Sowingschedule"</span>),<span class="at">by.y=</span><span class="fu">c</span>(<span class="st">"A.q103_district"</span>,<span class="st">"Sowing_Date_Schedule"</span>))</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>LDS_sow_char_data_traits<span class="sc">$</span>log_diff_sow_shares<span class="ot">=</span><span class="fu">log</span>(LDS_sow_char_data_traits<span class="sc">$</span>sowing_shares)<span class="sc">-</span><span class="fu">log</span>(LDS_sow_char_data_traits<span class="sc">$</span>sowing_shares_T5_15Dec)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="do">## all trait model ---------</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>sowing_trait_model_all <span class="ot">&lt;-</span> <span class="fu">lm</span>(log_diff_sow_shares <span class="sc">~</span> StabilityScore<span class="sc">:</span>(C.q306_cropLarestAreaAcre_cat <span class="sc">+</span> M.q702_hhMemAg_cat_lab <span class="sc">+</span> M.q708_marketDistance_cat) <span class="sc">+</span> Pscore<span class="sc">:</span>(C.q306_cropLarestAreaAcre_cat <span class="sc">+</span> M.q702_hhMemAg_cat_lab <span class="sc">+</span> M.q708_marketDistance_cat) <span class="sc">+</span> D.q402_drainClass <span class="sc">+</span> A.q111_fGenderdum <span class="sc">+</span> A.q112_fEdu_new <span class="sc">+</span> IrrigSource <span class="sc">+</span> D.q402_drainClass <span class="sc">+</span> PrevCropHarvestDayfor1stJan2017_num <span class="sc">+</span> D.prevCrop_Rice <span class="sc">+</span> variety_type_NMWV <span class="sc">+</span> A.q111_fGenderdum <span class="sc">+</span> temp <span class="sc">+</span> precip <span class="sc">+</span> wc2<span class="fl">.1</span>_30s_elev <span class="sc">+</span> nitrogen_0<span class="fl">.5</span>cm <span class="sc">+</span> sand_0<span class="fl">.5</span>cm <span class="sc">+</span> soc_5<span class="fl">.15</span>cm, <span class="at">data =</span> LDS_sow_char_data_traits)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sowing_trait_model_all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log_diff_sow_shares ~ StabilityScore:(C.q306_cropLarestAreaAcre_cat + 
+    M.q702_hhMemAg_cat_lab + M.q708_marketDistance_cat) + Pscore:(C.q306_cropLarestAreaAcre_cat + 
+    M.q702_hhMemAg_cat_lab + M.q708_marketDistance_cat) + D.q402_drainClass + 
+    A.q111_fGenderdum + A.q112_fEdu_new + IrrigSource + D.q402_drainClass + 
+    PrevCropHarvestDayfor1stJan2017_num + D.prevCrop_Rice + variety_type_NMWV + 
+    A.q111_fGenderdum + temp + precip + wc2.1_30s_elev + nitrogen_0.5cm + 
+    sand_0.5cm + soc_5.15cm, data = LDS_sow_char_data_traits)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.3502 -0.4364 -0.0207  0.4594  2.4741 
+
+Coefficients:
+                                                             Estimate
+(Intercept)                                                -1.682e+00
+D.q402_drainClassMediumLand                                 1.344e-01
+D.q402_drainClassUpland                                     4.225e-01
+D.q402_drainClassVeryLowLand                                1.133e+00
+A.q111_fGenderdum                                           1.735e-01
+A.q112_fEdu_newbachelors                                    3.904e-01
+A.q112_fEdu_newmatriculation                                1.181e-01
+A.q112_fEdu_newPostgrad                                     8.075e-01
+A.q112_fEdu_newprimary                                      1.172e-01
+A.q112_fEdu_newseniorSecondary                              5.609e-02
+IrrigSourceConjuctive                                       6.347e-01
+IrrigSourceDeepTubeWell                                     6.120e-02
+IrrigSourceShallowTubewell                                  5.818e-01
+IrrigSourceSurface                                         -5.384e-02
+PrevCropHarvestDayfor1stJan2017_num                        -1.009e-02
+D.prevCrop_Rice                                             7.355e-01
+variety_type_NMWV                                           1.153e-01
+temp                                                        1.109e-01
+precip                                                     -4.569e-05
+wc2.1_30s_elev                                              5.880e-04
+nitrogen_0.5cm                                             -1.434e+00
+sand_0.5cm                                                  1.499e-01
+soc_5.15cm                                                  5.085e-02
+StabilityScore:C.q306_cropLarestAreaAcre_cat[0.0286,0.267] -6.389e-01
+StabilityScore:C.q306_cropLarestAreaAcre_cat(0.267,0.455]  -6.104e-01
+StabilityScore:C.q306_cropLarestAreaAcre_cat(0.455,0.682]  -4.169e-01
+StabilityScore:C.q306_cropLarestAreaAcre_cat(0.682,20]     -3.981e-01
+StabilityScore:M.q702_hhMemAg_cat_lab(1,2]                  2.200e-01
+StabilityScore:M.q702_hhMemAg_cat_lab(2,3]                  4.932e-01
+StabilityScore:M.q702_hhMemAg_cat_lab(3,12]                 1.592e-01
+StabilityScore:M.q708_marketDistance_cat(2,3]               1.574e-01
+StabilityScore:M.q708_marketDistance_cat(3,6]              -2.925e-01
+StabilityScore:M.q708_marketDistance_cat(6,55]              4.991e-01
+C.q306_cropLarestAreaAcre_cat[0.0286,0.267]:Pscore         -1.427e-01
+C.q306_cropLarestAreaAcre_cat(0.267,0.455]:Pscore          -1.456e-01
+C.q306_cropLarestAreaAcre_cat(0.455,0.682]:Pscore          -3.693e-01
+C.q306_cropLarestAreaAcre_cat(0.682,20]:Pscore             -3.225e-01
+M.q702_hhMemAg_cat_lab(1,2]:Pscore                         -1.338e-01
+M.q702_hhMemAg_cat_lab(2,3]:Pscore                         -2.561e-01
+M.q702_hhMemAg_cat_lab(3,12]:Pscore                        -2.160e-01
+M.q708_marketDistance_cat(2,3]:Pscore                      -7.436e-03
+M.q708_marketDistance_cat(3,6]:Pscore                       1.971e-01
+M.q708_marketDistance_cat(6,55]:Pscore                     -4.528e-01
+                                                           Std. Error t value
+(Intercept)                                                 3.068e+00  -0.548
+D.q402_drainClassMediumLand                                 8.639e-02   1.556
+D.q402_drainClassUpland                                     1.267e-01   3.336
+D.q402_drainClassVeryLowLand                                5.681e-01   1.995
+A.q111_fGenderdum                                           1.291e-01   1.344
+A.q112_fEdu_newbachelors                                    1.167e-01   3.347
+A.q112_fEdu_newmatriculation                                8.625e-02   1.369
+A.q112_fEdu_newPostgrad                                     2.637e-01   3.063
+A.q112_fEdu_newprimary                                      8.250e-02   1.420
+A.q112_fEdu_newseniorSecondary                              1.097e-01   0.511
+IrrigSourceConjuctive                                       1.127e+00   0.563
+IrrigSourceDeepTubeWell                                     7.979e-01   0.077
+IrrigSourceShallowTubewell                                  7.977e-01   0.729
+IrrigSourceSurface                                          7.986e-01  -0.067
+PrevCropHarvestDayfor1stJan2017_num                         2.354e-03  -4.288
+D.prevCrop_Rice                                             9.575e-02   7.681
+variety_type_NMWV                                           7.144e-02   1.613
+temp                                                        1.034e-01   1.073
+precip                                                      1.308e-04  -0.349
+wc2.1_30s_elev                                              1.999e-03   0.294
+nitrogen_0.5cm                                              2.184e-01  -6.566
+sand_0.5cm                                                  1.632e-02   9.184
+soc_5.15cm                                                  1.913e-02   2.658
+StabilityScore:C.q306_cropLarestAreaAcre_cat[0.0286,0.267]  2.914e-01  -2.193
+StabilityScore:C.q306_cropLarestAreaAcre_cat(0.267,0.455]   2.399e-01  -2.545
+StabilityScore:C.q306_cropLarestAreaAcre_cat(0.455,0.682]   2.233e-01  -1.867
+StabilityScore:C.q306_cropLarestAreaAcre_cat(0.682,20]      2.446e-01  -1.627
+StabilityScore:M.q702_hhMemAg_cat_lab(1,2]                  1.668e-01   1.319
+StabilityScore:M.q702_hhMemAg_cat_lab(2,3]                  1.999e-01   2.467
+StabilityScore:M.q702_hhMemAg_cat_lab(3,12]                 2.339e-01   0.680
+StabilityScore:M.q708_marketDistance_cat(2,3]               2.300e-01   0.685
+StabilityScore:M.q708_marketDistance_cat(3,6]               1.883e-01  -1.553
+StabilityScore:M.q708_marketDistance_cat(6,55]              1.702e-01   2.932
+C.q306_cropLarestAreaAcre_cat[0.0286,0.267]:Pscore          2.468e-01  -0.578
+C.q306_cropLarestAreaAcre_cat(0.267,0.455]:Pscore           2.465e-01  -0.591
+C.q306_cropLarestAreaAcre_cat(0.455,0.682]:Pscore           2.583e-01  -1.430
+C.q306_cropLarestAreaAcre_cat(0.682,20]:Pscore              2.497e-01  -1.291
+M.q702_hhMemAg_cat_lab(1,2]:Pscore                          1.287e-01  -1.039
+M.q702_hhMemAg_cat_lab(2,3]:Pscore                          1.428e-01  -1.793
+M.q702_hhMemAg_cat_lab(3,12]:Pscore                         1.525e-01  -1.417
+M.q708_marketDistance_cat(2,3]:Pscore                       1.652e-01  -0.045
+M.q708_marketDistance_cat(3,6]:Pscore                       1.423e-01   1.385
+M.q708_marketDistance_cat(6,55]:Pscore                      1.230e-01  -3.680
+                                                           Pr(&gt;|t|)    
+(Intercept)                                                0.583765    
+D.q402_drainClassMediumLand                                0.120160    
+D.q402_drainClassUpland                                    0.000895 ***
+D.q402_drainClassVeryLowLand                               0.046470 *  
+A.q111_fGenderdum                                          0.179367    
+A.q112_fEdu_newbachelors                                   0.000861 ***
+A.q112_fEdu_newmatriculation                               0.171503    
+A.q112_fEdu_newPostgrad                                    0.002278 ** 
+A.q112_fEdu_newprimary                                     0.156034    
+A.q112_fEdu_newseniorSecondary                             0.609227    
+IrrigSourceConjuctive                                      0.573658    
+IrrigSourceDeepTubeWell                                    0.938886    
+IrrigSourceShallowTubewell                                 0.465986    
+IrrigSourceSurface                                         0.946274    
+PrevCropHarvestDayfor1stJan2017_num                        2.05e-05 ***
+D.prevCrop_Rice                                            5.27e-14 ***
+variety_type_NMWV                                          0.107116    
+temp                                                       0.283698    
+precip                                                     0.726882    
+wc2.1_30s_elev                                             0.768748    
+nitrogen_0.5cm                                             1.00e-10 ***
+sand_0.5cm                                                  &lt; 2e-16 ***
+soc_5.15cm                                                 0.008033 ** 
+StabilityScore:C.q306_cropLarestAreaAcre_cat[0.0286,0.267] 0.028643 *  
+StabilityScore:C.q306_cropLarestAreaAcre_cat(0.267,0.455]  0.011137 *  
+StabilityScore:C.q306_cropLarestAreaAcre_cat(0.455,0.682]  0.062279 .  
+StabilityScore:C.q306_cropLarestAreaAcre_cat(0.682,20]     0.104129    
+StabilityScore:M.q702_hhMemAg_cat_lab(1,2]                 0.187553    
+StabilityScore:M.q702_hhMemAg_cat_lab(2,3]                 0.013853 *  
+StabilityScore:M.q702_hhMemAg_cat_lab(3,12]                0.496437    
+StabilityScore:M.q708_marketDistance_cat(2,3]              0.493864    
+StabilityScore:M.q708_marketDistance_cat(3,6]              0.120884    
+StabilityScore:M.q708_marketDistance_cat(6,55]             0.003476 ** 
+C.q306_cropLarestAreaAcre_cat[0.0286,0.267]:Pscore         0.563444    
+C.q306_cropLarestAreaAcre_cat(0.267,0.455]:Pscore          0.554850    
+C.q306_cropLarestAreaAcre_cat(0.455,0.682]:Pscore          0.153150    
+C.q306_cropLarestAreaAcre_cat(0.682,20]:Pscore             0.197023    
+M.q702_hhMemAg_cat_lab(1,2]:Pscore                         0.298966    
+M.q702_hhMemAg_cat_lab(2,3]:Pscore                         0.073381 .  
+M.q702_hhMemAg_cat_lab(3,12]:Pscore                        0.157043    
+M.q708_marketDistance_cat(2,3]:Pscore                      0.964103    
+M.q708_marketDistance_cat(3,6]:Pscore                      0.166486    
+M.q708_marketDistance_cat(6,55]:Pscore                     0.000251 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.7771 on 705 degrees of freedom
+  (214 observations deleted due to missingness)
+Multiple R-squared:  0.5924,    Adjusted R-squared:  0.5682 
+F-statistic:  24.4 on 42 and 705 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(sowing_trait_model_all, <span class="at">shape =</span> <span class="sc">~</span>statistic, <span class="at">coef_omit =</span> <span class="st">"Interc"</span>, <span class="at">stars =</span> <span class="cn">TRUE</span>, <span class="at">gof_map =</span> <span class="fu">c</span>(<span class="st">"nobs"</span>, <span class="st">"r.squared"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Model 1
+</div></th>
+</tr>
+<tr class="odd">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Est.</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">S.E.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">D.q402_drainClassMediumLand</td>
+<td style="text-align: center;">0.134</td>
+<td style="text-align: center;">0.086</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D.q402_drainClassUpland</td>
+<td style="text-align: center;">0.422***</td>
+<td style="text-align: center;">0.127</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">D.q402_drainClassVeryLowLand</td>
+<td style="text-align: center;">1.133*</td>
+<td style="text-align: center;">0.568</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A.q111_fGenderdum</td>
+<td style="text-align: center;">0.174</td>
+<td style="text-align: center;">0.129</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A.q112_fEdu_newbachelors</td>
+<td style="text-align: center;">0.390***</td>
+<td style="text-align: center;">0.117</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A.q112_fEdu_newmatriculation</td>
+<td style="text-align: center;">0.118</td>
+<td style="text-align: center;">0.086</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A.q112_fEdu_newPostgrad</td>
+<td style="text-align: center;">0.807**</td>
+<td style="text-align: center;">0.264</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A.q112_fEdu_newprimary</td>
+<td style="text-align: center;">0.117</td>
+<td style="text-align: center;">0.083</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A.q112_fEdu_newseniorSecondary</td>
+<td style="text-align: center;">0.056</td>
+<td style="text-align: center;">0.110</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">IrrigSourceConjuctive</td>
+<td style="text-align: center;">0.635</td>
+<td style="text-align: center;">1.127</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IrrigSourceDeepTubeWell</td>
+<td style="text-align: center;">0.061</td>
+<td style="text-align: center;">0.798</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">IrrigSourceShallowTubewell</td>
+<td style="text-align: center;">0.582</td>
+<td style="text-align: center;">0.798</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IrrigSourceSurface</td>
+<td style="text-align: center;">-0.054</td>
+<td style="text-align: center;">0.799</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PrevCropHarvestDayfor1stJan2017_num</td>
+<td style="text-align: center;">-0.010***</td>
+<td style="text-align: center;">0.002</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">D.prevCrop_Rice</td>
+<td style="text-align: center;">0.736***</td>
+<td style="text-align: center;">0.096</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">variety_type_NMWV</td>
+<td style="text-align: center;">0.115</td>
+<td style="text-align: center;">0.071</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">temp</td>
+<td style="text-align: center;">0.111</td>
+<td style="text-align: center;">0.103</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">precip</td>
+<td style="text-align: center;">0.000</td>
+<td style="text-align: center;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">wc2.1_30s_elev</td>
+<td style="text-align: center;">0.001</td>
+<td style="text-align: center;">0.002</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">nitrogen_0.5cm</td>
+<td style="text-align: center;">-1.434***</td>
+<td style="text-align: center;">0.218</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sand_0.5cm</td>
+<td style="text-align: center;">0.150***</td>
+<td style="text-align: center;">0.016</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">soc_5.15cm</td>
+<td style="text-align: center;">0.051**</td>
+<td style="text-align: center;">0.019</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">StabilityScore × C.q306_cropLarestAreaAcre_cat[0.0286,0.267]</td>
+<td style="text-align: center;">-0.639*</td>
+<td style="text-align: center;">0.291</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">StabilityScore × C.q306_cropLarestAreaAcre_cat(0.267,0.455]</td>
+<td style="text-align: center;">-0.610*</td>
+<td style="text-align: center;">0.240</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">StabilityScore × C.q306_cropLarestAreaAcre_cat(0.455,0.682]</td>
+<td style="text-align: center;">-0.417+</td>
+<td style="text-align: center;">0.223</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">StabilityScore × C.q306_cropLarestAreaAcre_cat(0.682,20]</td>
+<td style="text-align: center;">-0.398</td>
+<td style="text-align: center;">0.245</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">StabilityScore × M.q702_hhMemAg_cat_lab(1,2]</td>
+<td style="text-align: center;">0.220</td>
+<td style="text-align: center;">0.167</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">StabilityScore × M.q702_hhMemAg_cat_lab(2,3]</td>
+<td style="text-align: center;">0.493*</td>
+<td style="text-align: center;">0.200</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">StabilityScore × M.q702_hhMemAg_cat_lab(3,12]</td>
+<td style="text-align: center;">0.159</td>
+<td style="text-align: center;">0.234</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">StabilityScore × M.q708_marketDistance_cat(2,3]</td>
+<td style="text-align: center;">0.157</td>
+<td style="text-align: center;">0.230</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">StabilityScore × M.q708_marketDistance_cat(3,6]</td>
+<td style="text-align: center;">-0.292</td>
+<td style="text-align: center;">0.188</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">StabilityScore × M.q708_marketDistance_cat(6,55]</td>
+<td style="text-align: center;">0.499**</td>
+<td style="text-align: center;">0.170</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C.q306_cropLarestAreaAcre_cat[0.0286,0.267] × Pscore</td>
+<td style="text-align: center;">-0.143</td>
+<td style="text-align: center;">0.247</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C.q306_cropLarestAreaAcre_cat(0.267,0.455] × Pscore</td>
+<td style="text-align: center;">-0.146</td>
+<td style="text-align: center;">0.247</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C.q306_cropLarestAreaAcre_cat(0.455,0.682] × Pscore</td>
+<td style="text-align: center;">-0.369</td>
+<td style="text-align: center;">0.258</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C.q306_cropLarestAreaAcre_cat(0.682,20] × Pscore</td>
+<td style="text-align: center;">-0.322</td>
+<td style="text-align: center;">0.250</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M.q702_hhMemAg_cat_lab(1,2] × Pscore</td>
+<td style="text-align: center;">-0.134</td>
+<td style="text-align: center;">0.129</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M.q702_hhMemAg_cat_lab(2,3] × Pscore</td>
+<td style="text-align: center;">-0.256+</td>
+<td style="text-align: center;">0.143</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M.q702_hhMemAg_cat_lab(3,12] × Pscore</td>
+<td style="text-align: center;">-0.216</td>
+<td style="text-align: center;">0.153</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M.q708_marketDistance_cat(2,3] × Pscore</td>
+<td style="text-align: center;">-0.007</td>
+<td style="text-align: center;">0.165</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M.q708_marketDistance_cat(3,6] × Pscore</td>
+<td style="text-align: center;">0.197</td>
+<td style="text-align: center;">0.142</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; box-shadow: 0px 1px;">M.q708_marketDistance_cat(6,55] × Pscore</td>
+<td style="text-align: center; box-shadow: 0px 1px;">-0.453***</td>
+<td style="text-align: center; box-shadow: 0px 1px;">0.123</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Num.Obs.</td>
+<td style="text-align: center;">748</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R2</td>
+<td style="text-align: center;">0.592</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody><tfoot>
+<tr class="even">
+<td style="text-align: left; padding: 0;"><sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Stability + adaptability ----</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>sowing_trait_model_OLS<span class="ot">=</span><span class="fu">lm</span>(log_diff_sow_shares<span class="sc">~</span>Pscore<span class="sc">+</span>StabilityScore<span class="sc">+</span>AdaptabilityScore<span class="sc">+</span>D.q402_drainClass<span class="sc">+</span>A.q111_fGenderdum<span class="sc">+</span>A.q112_fEdu_new<span class="sc">+</span>IrrigSource<span class="sc">+</span>D.q402_drainClass<span class="sc">+</span>C.q306_cropLarestAreaHA<span class="sc">+</span>M.q702_hhMemAg<span class="sc">+</span>PrevCropHarvestDayfor1stJan2017_num<span class="sc">+</span>D.prevCrop_Rice<span class="sc">+</span>variety_type_NMWV<span class="sc">+</span>A.q111_fGenderdum<span class="sc">+</span>temp<span class="sc">+</span>precip<span class="sc">+</span>wc2<span class="fl">.1</span>_30s_elev<span class="sc">+</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>                  M.q708_marketDistance<span class="sc">+</span>nitrogen_0<span class="fl">.5</span>cm<span class="sc">+</span>sand_0<span class="fl">.5</span>cm<span class="sc">+</span>soc_5<span class="fl">.15</span>cm,<span class="at">data=</span>LDS_sow_char_data_traits)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sowing_trait_model_OLS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log_diff_sow_shares ~ Pscore + StabilityScore + 
+    AdaptabilityScore + D.q402_drainClass + A.q111_fGenderdum + 
+    A.q112_fEdu_new + IrrigSource + D.q402_drainClass + C.q306_cropLarestAreaHA + 
+    M.q702_hhMemAg + PrevCropHarvestDayfor1stJan2017_num + D.prevCrop_Rice + 
+    variety_type_NMWV + A.q111_fGenderdum + temp + precip + wc2.1_30s_elev + 
+    M.q708_marketDistance + nitrogen_0.5cm + sand_0.5cm + soc_5.15cm, 
+    data = LDS_sow_char_data_traits)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.8059 -0.4429 -0.0420  0.5164  2.3774 
+
+Coefficients:
+                                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                         -1.622e+00  3.024e+00  -0.536 0.591955    
+Pscore                              -1.933e-01  2.182e-01  -0.886 0.376103    
+StabilityScore                      -7.246e-01  2.375e-01  -3.051 0.002361 ** 
+AdaptabilityScore                    7.358e-01  2.920e-01   2.520 0.011960 *  
+D.q402_drainClassMediumLand          1.531e-01  8.589e-02   1.783 0.075028 .  
+D.q402_drainClassUpland              4.008e-01  1.240e-01   3.233 0.001280 ** 
+D.q402_drainClassVeryLowLand         1.105e+00  5.663e-01   1.952 0.051328 .  
+A.q111_fGenderdum                    1.892e-01  1.302e-01   1.453 0.146527    
+A.q112_fEdu_newbachelors             3.999e-01  1.153e-01   3.468 0.000556 ***
+A.q112_fEdu_newmatriculation         1.137e-01  8.554e-02   1.329 0.184271    
+A.q112_fEdu_newPostgrad              8.380e-01  2.655e-01   3.156 0.001665 ** 
+A.q112_fEdu_newprimary               1.046e-01  8.171e-02   1.280 0.200901    
+A.q112_fEdu_newseniorSecondary       4.959e-02  1.078e-01   0.460 0.645603    
+IrrigSourceConjuctive                7.734e-01  1.126e+00   0.687 0.492555    
+IrrigSourceDeepTubeWell              3.327e-01  7.964e-01   0.418 0.676237    
+IrrigSourceShallowTubewell           7.856e-01  7.958e-01   0.987 0.323899    
+IrrigSourceSurface                   1.356e-01  7.974e-01   0.170 0.865060    
+C.q306_cropLarestAreaHA             -1.903e-01  1.427e-01  -1.333 0.182941    
+M.q702_hhMemAg                      -4.971e-03  2.088e-02  -0.238 0.811852    
+PrevCropHarvestDayfor1stJan2017_num -8.700e-03  2.348e-03  -3.705 0.000228 ***
+D.prevCrop_Rice                      7.857e-01  9.245e-02   8.499  &lt; 2e-16 ***
+variety_type_NMWV                    8.520e-02  7.093e-02   1.201 0.230083    
+temp                                 4.884e-02  1.020e-01   0.479 0.632213    
+precip                              -3.076e-05  1.299e-04  -0.237 0.812938    
+wc2.1_30s_elev                       2.070e-03  1.993e-03   1.039 0.299382    
+M.q708_marketDistance               -2.224e-02  6.404e-03  -3.473 0.000545 ***
+nitrogen_0.5cm                      -1.299e+00  2.187e-01  -5.938  4.5e-09 ***
+sand_0.5cm                           1.584e-01  1.603e-02   9.878  &lt; 2e-16 ***
+soc_5.15cm                           4.609e-02  1.862e-02   2.475 0.013541 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.7832 on 719 degrees of freedom
+  (214 observations deleted due to missingness)
+Multiple R-squared:  0.5778,    Adjusted R-squared:  0.5614 
+F-statistic: 35.15 on 28 and 719 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modelplot</span>(sowing_trait_model_OLS,<span class="at">coef_omit=</span><span class="st">"Interc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Differentiated_agronomy_segmentation_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">'orange'</span>),</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> term, <span class="at">x =</span> estimate), <span class="at">alpha =</span> .<span class="dv">3</span>, </span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">size =</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="st">'darkgreen'</span>))</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>sowing_trait_model_OLS_plot<span class="ot">=</span><span class="fu">modelplot</span>(sowing_trait_model_OLS,<span class="at">coef_omit =</span><span class="st">"Interc"</span>,<span class="at">background =</span> b,<span class="at">coef_map =</span> cm_sow)</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>sowing_trait_model_OLS_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Differentiated_agronomy_segmentation_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/sowing_characteristic_model_plot.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Saving 7 x 5 in image</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Stability analysis </span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>sowing_trait_model_OLS_stability <span class="ot">&lt;-</span> <span class="fu">lm</span>(log_diff_sow_shares <span class="sc">~</span> Pscore <span class="sc">+</span> StabilityScore <span class="sc">+</span> D.q402_drainClass <span class="sc">+</span> A.q111_fGenderdum <span class="sc">+</span> A.q112_fEdu_new <span class="sc">+</span> IrrigSource <span class="sc">+</span> D.q402_drainClass <span class="sc">+</span> C.q306_cropLarestAreaHA <span class="sc">+</span> M.q702_hhMemAg <span class="sc">+</span> PrevCropHarvestDayfor1stJan2017_num <span class="sc">+</span> D.prevCrop_Rice <span class="sc">+</span> variety_type_NMWV <span class="sc">+</span> A.q111_fGenderdum <span class="sc">+</span> temp <span class="sc">+</span> precip <span class="sc">+</span> wc2<span class="fl">.1</span>_30s_elev <span class="sc">+</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>    M.q708_marketDistance <span class="sc">+</span> nitrogen_0<span class="fl">.5</span>cm <span class="sc">+</span> sand_0<span class="fl">.5</span>cm <span class="sc">+</span> soc_5<span class="fl">.15</span>cm, <span class="at">data =</span> LDS_sow_char_data_traits)</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sowing_trait_model_OLS_stability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log_diff_sow_shares ~ Pscore + StabilityScore + 
+    D.q402_drainClass + A.q111_fGenderdum + A.q112_fEdu_new + 
+    IrrigSource + D.q402_drainClass + C.q306_cropLarestAreaHA + 
+    M.q702_hhMemAg + PrevCropHarvestDayfor1stJan2017_num + D.prevCrop_Rice + 
+    variety_type_NMWV + A.q111_fGenderdum + temp + precip + wc2.1_30s_elev + 
+    M.q708_marketDistance + nitrogen_0.5cm + sand_0.5cm + soc_5.15cm, 
+    data = LDS_sow_char_data_traits)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.4372 -0.4595 -0.0626  0.5133  2.4898 
+
+Coefficients:
+                                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                         -1.685e+00  3.036e+00  -0.555 0.578974    
+Pscore                              -3.727e-01  2.070e-01  -1.800 0.072282 .  
+StabilityScore                      -1.937e-01  1.099e-01  -1.762 0.078491 .  
+D.q402_drainClassMediumLand          1.498e-01  8.620e-02   1.738 0.082645 .  
+D.q402_drainClassUpland              4.050e-01  1.244e-01   3.255 0.001188 ** 
+D.q402_drainClassVeryLowLand         1.088e+00  5.684e-01   1.915 0.055906 .  
+A.q111_fGenderdum                    1.713e-01  1.304e-01   1.313 0.189504    
+A.q112_fEdu_newbachelors             4.013e-01  1.157e-01   3.467 0.000557 ***
+A.q112_fEdu_newmatriculation         9.487e-02  8.553e-02   1.109 0.267696    
+A.q112_fEdu_newPostgrad              8.545e-01  2.664e-01   3.208 0.001398 ** 
+A.q112_fEdu_newprimary               9.315e-02  8.188e-02   1.138 0.255681    
+A.q112_fEdu_newseniorSecondary       4.333e-02  1.082e-01   0.401 0.688805    
+IrrigSourceConjuctive                7.383e-01  1.130e+00   0.653 0.513899    
+IrrigSourceDeepTubeWell              2.817e-01  7.991e-01   0.352 0.724575    
+IrrigSourceShallowTubewell           7.703e-01  7.987e-01   0.964 0.335141    
+IrrigSourceSurface                   9.542e-02  8.002e-01   0.119 0.905118    
+C.q306_cropLarestAreaHA             -1.682e-01  1.430e-01  -1.176 0.239883    
+M.q702_hhMemAg                      -7.519e-03  2.093e-02  -0.359 0.719507    
+PrevCropHarvestDayfor1stJan2017_num -8.058e-03  2.343e-03  -3.439 0.000617 ***
+D.prevCrop_Rice                      7.759e-01  9.271e-02   8.369 3.01e-16 ***
+variety_type_NMWV                    8.732e-02  7.119e-02   1.227 0.220374    
+temp                                 6.148e-02  1.023e-01   0.601 0.547891    
+precip                              -3.466e-05  1.304e-04  -0.266 0.790516    
+wc2.1_30s_elev                       9.902e-04  1.954e-03   0.507 0.612419    
+M.q708_marketDistance               -2.382e-02  6.397e-03  -3.723 0.000212 ***
+nitrogen_0.5cm                      -1.332e+00  2.191e-01  -6.080 1.94e-09 ***
+sand_0.5cm                           1.607e-01  1.607e-02  10.004  &lt; 2e-16 ***
+soc_5.15cm                           4.637e-02  1.869e-02   2.481 0.013325 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.7861 on 720 degrees of freedom
+  (214 observations deleted due to missingness)
+Multiple R-squared:  0.5741,    Adjusted R-squared:  0.5581 
+F-statistic: 35.95 on 27 and 720 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modelplot</span>(sowing_trait_model_OLS_stability, <span class="at">coef_omit =</span> <span class="st">"Interc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Differentiated_agronomy_segmentation_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"orange"</span>),</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> term, <span class="at">x =</span> estimate),</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">alpha =</span> .<span class="dv">3</span>,</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">size =</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>sowing_trait_model_OLS_plot_stability <span class="ot">&lt;-</span> <span class="fu">modelplot</span>(sowing_trait_model_OLS_stability, <span class="at">coef_omit =</span> <span class="st">"Interc"</span>, <span class="at">background =</span> b)</span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>sowing_trait_model_OLS_plot_stability</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Differentiated_agronomy_segmentation_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adaptability</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>sowing_trait_model_OLS_adaptability <span class="ot">&lt;-</span> <span class="fu">lm</span>(log_diff_sow_shares <span class="sc">~</span> Pscore <span class="sc">+</span> AdaptabilityScore <span class="sc">+</span> D.q402_drainClass <span class="sc">+</span> A.q111_fGenderdum <span class="sc">+</span> A.q112_fEdu_new <span class="sc">+</span> IrrigSource <span class="sc">+</span> D.q402_drainClass <span class="sc">+</span> C.q306_cropLarestAreaHA <span class="sc">+</span> M.q702_hhMemAg <span class="sc">+</span> PrevCropHarvestDayfor1stJan2017_num <span class="sc">+</span> D.prevCrop_Rice <span class="sc">+</span> variety_type_NMWV <span class="sc">+</span> A.q111_fGenderdum <span class="sc">+</span> temp <span class="sc">+</span> precip <span class="sc">+</span> wc2<span class="fl">.1</span>_30s_elev <span class="sc">+</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>    M.q708_marketDistance <span class="sc">+</span> nitrogen_0<span class="fl">.5</span>cm <span class="sc">+</span> sand_0<span class="fl">.5</span>cm <span class="sc">+</span> soc_5<span class="fl">.15</span>cm, <span class="at">data =</span> LDS_sow_char_data_traits)</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sowing_trait_model_OLS_adaptability)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log_diff_sow_shares ~ Pscore + AdaptabilityScore + 
+    D.q402_drainClass + A.q111_fGenderdum + A.q112_fEdu_new + 
+    IrrigSource + D.q402_drainClass + C.q306_cropLarestAreaHA + 
+    M.q702_hhMemAg + PrevCropHarvestDayfor1stJan2017_num + D.prevCrop_Rice + 
+    variety_type_NMWV + A.q111_fGenderdum + temp + precip + wc2.1_30s_elev + 
+    M.q708_marketDistance + nitrogen_0.5cm + sand_0.5cm + soc_5.15cm, 
+    data = LDS_sow_char_data_traits)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.5221 -0.4577 -0.0471  0.4969  2.4954 
+
+Coefficients:
+                                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                         -2.274e+00  3.034e+00  -0.749 0.453874    
+Pscore                              -3.620e-01  2.123e-01  -1.705 0.088603 .  
+AdaptabilityScore                   -5.480e-02  1.355e-01  -0.405 0.685940    
+D.q402_drainClassMediumLand          1.516e-01  8.638e-02   1.754 0.079772 .  
+D.q402_drainClassUpland              3.994e-01  1.247e-01   3.203 0.001419 ** 
+D.q402_drainClassVeryLowLand         1.114e+00  5.696e-01   1.955 0.050965 .  
+A.q111_fGenderdum                    1.645e-01  1.307e-01   1.259 0.208411    
+A.q112_fEdu_newbachelors             3.862e-01  1.159e-01   3.332 0.000906 ***
+A.q112_fEdu_newmatriculation         8.316e-02  8.544e-02   0.973 0.330723    
+A.q112_fEdu_newPostgrad              8.390e-01  2.670e-01   3.142 0.001747 ** 
+A.q112_fEdu_newprimary               7.842e-02  8.172e-02   0.960 0.337611    
+A.q112_fEdu_newseniorSecondary       3.441e-02  1.083e-01   0.318 0.750760    
+IrrigSourceConjuctive                6.863e-01  1.132e+00   0.606 0.544699    
+IrrigSourceDeepTubeWell              2.570e-01  8.006e-01   0.321 0.748289    
+IrrigSourceShallowTubewell           7.519e-01  8.003e-01   0.940 0.347771    
+IrrigSourceSurface                   7.010e-02  8.017e-01   0.087 0.930354    
+C.q306_cropLarestAreaHA             -1.525e-01  1.430e-01  -1.066 0.286581    
+M.q702_hhMemAg                      -6.406e-03  2.099e-02  -0.305 0.760336    
+PrevCropHarvestDayfor1stJan2017_num -8.138e-03  2.354e-03  -3.457 0.000579 ***
+D.prevCrop_Rice                      7.690e-01  9.282e-02   8.284 5.79e-16 ***
+variety_type_NMWV                    8.417e-02  7.134e-02   1.180 0.238471    
+temp                                 6.876e-02  1.024e-01   0.672 0.502036    
+precip                              -3.348e-05  1.307e-04  -0.256 0.797892    
+wc2.1_30s_elev                       1.086e-03  1.978e-03   0.549 0.583311    
+M.q708_marketDistance               -2.267e-02  6.439e-03  -3.521 0.000457 ***
+nitrogen_0.5cm                      -1.341e+00  2.195e-01  -6.109 1.64e-09 ***
+sand_0.5cm                           1.664e-01  1.591e-02  10.462  &lt; 2e-16 ***
+soc_5.15cm                           5.826e-02  1.829e-02   3.185 0.001511 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.7877 on 720 degrees of freedom
+  (214 observations deleted due to missingness)
+Multiple R-squared:  0.5724,    Adjusted R-squared:  0.5563 
+F-statistic: 35.69 on 27 and 720 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modelplot</span>(sowing_trait_model_OLS_adaptability, <span class="at">coef_omit =</span> <span class="st">"Interc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Differentiated_agronomy_segmentation_files/figure-html/unnamed-chunk-6-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"orange"</span>),</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> term, <span class="at">x =</span> estimate),</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">alpha =</span> .<span class="dv">3</span>,</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">size =</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>sowing_trait_model_OLS_plot_adaptability <span class="ot">&lt;-</span> <span class="fu">modelplot</span>(sowing_trait_model_OLS_adaptability, <span class="at">coef_omit =</span> <span class="st">"Interc"</span>, <span class="at">background =</span> b)</span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>sowing_trait_model_OLS_plot_adaptability</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Differentiated_agronomy_segmentation_files/figure-html/unnamed-chunk-6-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>sowing_trait_model_list <span class="ot">&lt;-</span> <span class="fu">list</span>(sowing_trait_model_OLS_stability, sowing_trait_model_OLS_adaptability, sowing_trait_model_OLS)</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(sowing_trait_model_list, <span class="at">coef_omit =</span> <span class="st">"Interc"</span>, <span class="at">stars =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Model 1</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Model 2</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Model 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Pscore</td>
+<td style="text-align: center;">-0.373+</td>
+<td style="text-align: center;">-0.362+</td>
+<td style="text-align: center;">-0.193</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.207)</td>
+<td style="text-align: center;">(0.212)</td>
+<td style="text-align: center;">(0.218)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">StabilityScore</td>
+<td style="text-align: center;">-0.194+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">-0.725**</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.110)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">(0.237)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">D.q402_drainClassMediumLand</td>
+<td style="text-align: center;">0.150+</td>
+<td style="text-align: center;">0.152+</td>
+<td style="text-align: center;">0.153+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.086)</td>
+<td style="text-align: center;">(0.086)</td>
+<td style="text-align: center;">(0.086)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">D.q402_drainClassUpland</td>
+<td style="text-align: center;">0.405**</td>
+<td style="text-align: center;">0.399**</td>
+<td style="text-align: center;">0.401**</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.124)</td>
+<td style="text-align: center;">(0.125)</td>
+<td style="text-align: center;">(0.124)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">D.q402_drainClassVeryLowLand</td>
+<td style="text-align: center;">1.088+</td>
+<td style="text-align: center;">1.114+</td>
+<td style="text-align: center;">1.105+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.568)</td>
+<td style="text-align: center;">(0.570)</td>
+<td style="text-align: center;">(0.566)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A.q111_fGenderdum</td>
+<td style="text-align: center;">0.171</td>
+<td style="text-align: center;">0.165</td>
+<td style="text-align: center;">0.189</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.130)</td>
+<td style="text-align: center;">(0.131)</td>
+<td style="text-align: center;">(0.130)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A.q112_fEdu_newbachelors</td>
+<td style="text-align: center;">0.401***</td>
+<td style="text-align: center;">0.386***</td>
+<td style="text-align: center;">0.400***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.116)</td>
+<td style="text-align: center;">(0.116)</td>
+<td style="text-align: center;">(0.115)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A.q112_fEdu_newmatriculation</td>
+<td style="text-align: center;">0.095</td>
+<td style="text-align: center;">0.083</td>
+<td style="text-align: center;">0.114</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.086)</td>
+<td style="text-align: center;">(0.085)</td>
+<td style="text-align: center;">(0.086)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A.q112_fEdu_newPostgrad</td>
+<td style="text-align: center;">0.855**</td>
+<td style="text-align: center;">0.839**</td>
+<td style="text-align: center;">0.838**</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.266)</td>
+<td style="text-align: center;">(0.267)</td>
+<td style="text-align: center;">(0.265)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A.q112_fEdu_newprimary</td>
+<td style="text-align: center;">0.093</td>
+<td style="text-align: center;">0.078</td>
+<td style="text-align: center;">0.105</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.082)</td>
+<td style="text-align: center;">(0.082)</td>
+<td style="text-align: center;">(0.082)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A.q112_fEdu_newseniorSecondary</td>
+<td style="text-align: center;">0.043</td>
+<td style="text-align: center;">0.034</td>
+<td style="text-align: center;">0.050</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.108)</td>
+<td style="text-align: center;">(0.108)</td>
+<td style="text-align: center;">(0.108)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IrrigSourceConjuctive</td>
+<td style="text-align: center;">0.738</td>
+<td style="text-align: center;">0.686</td>
+<td style="text-align: center;">0.773</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(1.130)</td>
+<td style="text-align: center;">(1.132)</td>
+<td style="text-align: center;">(1.126)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IrrigSourceDeepTubeWell</td>
+<td style="text-align: center;">0.282</td>
+<td style="text-align: center;">0.257</td>
+<td style="text-align: center;">0.333</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.799)</td>
+<td style="text-align: center;">(0.801)</td>
+<td style="text-align: center;">(0.796)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IrrigSourceShallowTubewell</td>
+<td style="text-align: center;">0.770</td>
+<td style="text-align: center;">0.752</td>
+<td style="text-align: center;">0.786</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.799)</td>
+<td style="text-align: center;">(0.800)</td>
+<td style="text-align: center;">(0.796)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IrrigSourceSurface</td>
+<td style="text-align: center;">0.095</td>
+<td style="text-align: center;">0.070</td>
+<td style="text-align: center;">0.136</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.800)</td>
+<td style="text-align: center;">(0.802)</td>
+<td style="text-align: center;">(0.797)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C.q306_cropLarestAreaHA</td>
+<td style="text-align: center;">-0.168</td>
+<td style="text-align: center;">-0.153</td>
+<td style="text-align: center;">-0.190</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.143)</td>
+<td style="text-align: center;">(0.143)</td>
+<td style="text-align: center;">(0.143)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M.q702_hhMemAg</td>
+<td style="text-align: center;">-0.008</td>
+<td style="text-align: center;">-0.006</td>
+<td style="text-align: center;">-0.005</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.021)</td>
+<td style="text-align: center;">(0.021)</td>
+<td style="text-align: center;">(0.021)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PrevCropHarvestDayfor1stJan2017_num</td>
+<td style="text-align: center;">-0.008***</td>
+<td style="text-align: center;">-0.008***</td>
+<td style="text-align: center;">-0.009***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.002)</td>
+<td style="text-align: center;">(0.002)</td>
+<td style="text-align: center;">(0.002)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">D.prevCrop_Rice</td>
+<td style="text-align: center;">0.776***</td>
+<td style="text-align: center;">0.769***</td>
+<td style="text-align: center;">0.786***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.093)</td>
+<td style="text-align: center;">(0.093)</td>
+<td style="text-align: center;">(0.092)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">variety_type_NMWV</td>
+<td style="text-align: center;">0.087</td>
+<td style="text-align: center;">0.084</td>
+<td style="text-align: center;">0.085</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.071)</td>
+<td style="text-align: center;">(0.071)</td>
+<td style="text-align: center;">(0.071)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">temp</td>
+<td style="text-align: center;">0.061</td>
+<td style="text-align: center;">0.069</td>
+<td style="text-align: center;">0.049</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.102)</td>
+<td style="text-align: center;">(0.102)</td>
+<td style="text-align: center;">(0.102)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">precip</td>
+<td style="text-align: center;">0.000</td>
+<td style="text-align: center;">0.000</td>
+<td style="text-align: center;">0.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.000)</td>
+<td style="text-align: center;">(0.000)</td>
+<td style="text-align: center;">(0.000)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">wc2.1_30s_elev</td>
+<td style="text-align: center;">0.001</td>
+<td style="text-align: center;">0.001</td>
+<td style="text-align: center;">0.002</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.002)</td>
+<td style="text-align: center;">(0.002)</td>
+<td style="text-align: center;">(0.002)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M.q708_marketDistance</td>
+<td style="text-align: center;">-0.024***</td>
+<td style="text-align: center;">-0.023***</td>
+<td style="text-align: center;">-0.022***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.006)</td>
+<td style="text-align: center;">(0.006)</td>
+<td style="text-align: center;">(0.006)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">nitrogen_0.5cm</td>
+<td style="text-align: center;">-1.332***</td>
+<td style="text-align: center;">-1.341***</td>
+<td style="text-align: center;">-1.299***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.219)</td>
+<td style="text-align: center;">(0.220)</td>
+<td style="text-align: center;">(0.219)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sand_0.5cm</td>
+<td style="text-align: center;">0.161***</td>
+<td style="text-align: center;">0.166***</td>
+<td style="text-align: center;">0.158***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.016)</td>
+<td style="text-align: center;">(0.016)</td>
+<td style="text-align: center;">(0.016)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">soc_5.15cm</td>
+<td style="text-align: center;">0.046*</td>
+<td style="text-align: center;">0.058**</td>
+<td style="text-align: center;">0.046*</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">(0.019)</td>
+<td style="text-align: center;">(0.018)</td>
+<td style="text-align: center;">(0.019)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AdaptabilityScore</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">-0.055</td>
+<td style="text-align: center;">0.736*</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; box-shadow: 0px 1px;"></td>
+<td style="text-align: center; box-shadow: 0px 1px;"></td>
+<td style="text-align: center; box-shadow: 0px 1px;">(0.135)</td>
+<td style="text-align: center; box-shadow: 0px 1px;">(0.292)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Num.Obs.</td>
+<td style="text-align: center;">748</td>
+<td style="text-align: center;">748</td>
+<td style="text-align: center;">748</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R2</td>
+<td style="text-align: center;">0.574</td>
+<td style="text-align: center;">0.572</td>
+<td style="text-align: center;">0.578</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2 Adj.</td>
+<td style="text-align: center;">0.558</td>
+<td style="text-align: center;">0.556</td>
+<td style="text-align: center;">0.561</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AIC</td>
+<td style="text-align: center;">1792.1</td>
+<td style="text-align: center;">1795.1</td>
+<td style="text-align: center;">1787.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BIC</td>
+<td style="text-align: center;">1926.0</td>
+<td style="text-align: center;">1929.0</td>
+<td style="text-align: center;">1926.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Log.Lik.</td>
+<td style="text-align: center;">-867.038</td>
+<td style="text-align: center;">-868.562</td>
+<td style="text-align: center;">-863.750</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F</td>
+<td style="text-align: center;">35.945</td>
+<td style="text-align: center;">35.691</td>
+<td style="text-align: center;">35.146</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RMSE</td>
+<td style="text-align: center;">0.77</td>
+<td style="text-align: center;">0.77</td>
+<td style="text-align: center;">0.77</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="interaction-model" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Interaction model</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>all_char_model_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"Sowing"</span><span class="ot">=</span>sowing_trait_model_all)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(all_char_model_list, <span class="at">shape =</span> <span class="sc">~</span>statistic, <span class="at">coef_omit =</span> <span class="st">"Interc"</span>, <span class="at">stars =</span> <span class="cn">TRUE</span>, <span class="at">gof_map =</span> <span class="fu">c</span>(<span class="st">"nobs"</span>, <span class="st">"r.squared"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sowing
+</div></th>
+</tr>
+<tr class="odd">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Est.</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">S.E.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">D.q402_drainClassMediumLand</td>
+<td style="text-align: center;">0.134</td>
+<td style="text-align: center;">0.086</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D.q402_drainClassUpland</td>
+<td style="text-align: center;">0.422***</td>
+<td style="text-align: center;">0.127</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">D.q402_drainClassVeryLowLand</td>
+<td style="text-align: center;">1.133*</td>
+<td style="text-align: center;">0.568</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A.q111_fGenderdum</td>
+<td style="text-align: center;">0.174</td>
+<td style="text-align: center;">0.129</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A.q112_fEdu_newbachelors</td>
+<td style="text-align: center;">0.390***</td>
+<td style="text-align: center;">0.117</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A.q112_fEdu_newmatriculation</td>
+<td style="text-align: center;">0.118</td>
+<td style="text-align: center;">0.086</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A.q112_fEdu_newPostgrad</td>
+<td style="text-align: center;">0.807**</td>
+<td style="text-align: center;">0.264</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A.q112_fEdu_newprimary</td>
+<td style="text-align: center;">0.117</td>
+<td style="text-align: center;">0.083</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A.q112_fEdu_newseniorSecondary</td>
+<td style="text-align: center;">0.056</td>
+<td style="text-align: center;">0.110</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">IrrigSourceConjuctive</td>
+<td style="text-align: center;">0.635</td>
+<td style="text-align: center;">1.127</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IrrigSourceDeepTubeWell</td>
+<td style="text-align: center;">0.061</td>
+<td style="text-align: center;">0.798</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">IrrigSourceShallowTubewell</td>
+<td style="text-align: center;">0.582</td>
+<td style="text-align: center;">0.798</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IrrigSourceSurface</td>
+<td style="text-align: center;">-0.054</td>
+<td style="text-align: center;">0.799</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PrevCropHarvestDayfor1stJan2017_num</td>
+<td style="text-align: center;">-0.010***</td>
+<td style="text-align: center;">0.002</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">D.prevCrop_Rice</td>
+<td style="text-align: center;">0.736***</td>
+<td style="text-align: center;">0.096</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">variety_type_NMWV</td>
+<td style="text-align: center;">0.115</td>
+<td style="text-align: center;">0.071</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">temp</td>
+<td style="text-align: center;">0.111</td>
+<td style="text-align: center;">0.103</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">precip</td>
+<td style="text-align: center;">0.000</td>
+<td style="text-align: center;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">wc2.1_30s_elev</td>
+<td style="text-align: center;">0.001</td>
+<td style="text-align: center;">0.002</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">nitrogen_0.5cm</td>
+<td style="text-align: center;">-1.434***</td>
+<td style="text-align: center;">0.218</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sand_0.5cm</td>
+<td style="text-align: center;">0.150***</td>
+<td style="text-align: center;">0.016</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">soc_5.15cm</td>
+<td style="text-align: center;">0.051**</td>
+<td style="text-align: center;">0.019</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">StabilityScore × C.q306_cropLarestAreaAcre_cat[0.0286,0.267]</td>
+<td style="text-align: center;">-0.639*</td>
+<td style="text-align: center;">0.291</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">StabilityScore × C.q306_cropLarestAreaAcre_cat(0.267,0.455]</td>
+<td style="text-align: center;">-0.610*</td>
+<td style="text-align: center;">0.240</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">StabilityScore × C.q306_cropLarestAreaAcre_cat(0.455,0.682]</td>
+<td style="text-align: center;">-0.417+</td>
+<td style="text-align: center;">0.223</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">StabilityScore × C.q306_cropLarestAreaAcre_cat(0.682,20]</td>
+<td style="text-align: center;">-0.398</td>
+<td style="text-align: center;">0.245</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">StabilityScore × M.q702_hhMemAg_cat_lab(1,2]</td>
+<td style="text-align: center;">0.220</td>
+<td style="text-align: center;">0.167</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">StabilityScore × M.q702_hhMemAg_cat_lab(2,3]</td>
+<td style="text-align: center;">0.493*</td>
+<td style="text-align: center;">0.200</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">StabilityScore × M.q702_hhMemAg_cat_lab(3,12]</td>
+<td style="text-align: center;">0.159</td>
+<td style="text-align: center;">0.234</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">StabilityScore × M.q708_marketDistance_cat(2,3]</td>
+<td style="text-align: center;">0.157</td>
+<td style="text-align: center;">0.230</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">StabilityScore × M.q708_marketDistance_cat(3,6]</td>
+<td style="text-align: center;">-0.292</td>
+<td style="text-align: center;">0.188</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">StabilityScore × M.q708_marketDistance_cat(6,55]</td>
+<td style="text-align: center;">0.499**</td>
+<td style="text-align: center;">0.170</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C.q306_cropLarestAreaAcre_cat[0.0286,0.267] × Pscore</td>
+<td style="text-align: center;">-0.143</td>
+<td style="text-align: center;">0.247</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C.q306_cropLarestAreaAcre_cat(0.267,0.455] × Pscore</td>
+<td style="text-align: center;">-0.146</td>
+<td style="text-align: center;">0.247</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C.q306_cropLarestAreaAcre_cat(0.455,0.682] × Pscore</td>
+<td style="text-align: center;">-0.369</td>
+<td style="text-align: center;">0.258</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C.q306_cropLarestAreaAcre_cat(0.682,20] × Pscore</td>
+<td style="text-align: center;">-0.322</td>
+<td style="text-align: center;">0.250</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M.q702_hhMemAg_cat_lab(1,2] × Pscore</td>
+<td style="text-align: center;">-0.134</td>
+<td style="text-align: center;">0.129</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M.q702_hhMemAg_cat_lab(2,3] × Pscore</td>
+<td style="text-align: center;">-0.256+</td>
+<td style="text-align: center;">0.143</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M.q702_hhMemAg_cat_lab(3,12] × Pscore</td>
+<td style="text-align: center;">-0.216</td>
+<td style="text-align: center;">0.153</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M.q708_marketDistance_cat(2,3] × Pscore</td>
+<td style="text-align: center;">-0.007</td>
+<td style="text-align: center;">0.165</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M.q708_marketDistance_cat(3,6] × Pscore</td>
+<td style="text-align: center;">0.197</td>
+<td style="text-align: center;">0.142</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; box-shadow: 0px 1px;">M.q708_marketDistance_cat(6,55] × Pscore</td>
+<td style="text-align: center; box-shadow: 0px 1px;">-0.453***</td>
+<td style="text-align: center; box-shadow: 0px 1px;">0.123</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Num.Obs.</td>
+<td style="text-align: center;">748</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R2</td>
+<td style="text-align: center;">0.592</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody><tfoot>
+<tr class="even">
+<td style="text-align: left; padding: 0;"><sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
